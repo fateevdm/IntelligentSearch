@@ -3,6 +3,7 @@ package com.myuniver.intelligentsearch.util.io;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Scanner;
 
 /**
  * User: Dima
@@ -21,6 +22,12 @@ public class DictionaryReader {
     }
 
     public void openConnection() {
+
+        Scanner scanner = new Scanner(dataStream);
+        int index = 0;
+        while (scanner.hasNext()) {
+            System.out.println("line number: " + ++index + " ; current line: " + scanner.nextLine().trim());
+        }
 
     }
 }

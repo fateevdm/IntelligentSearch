@@ -20,7 +20,7 @@ public class DictionaryReaderTest {
      */
     @Test
     public void testDAO() throws FileNotFoundException {
-        String filePath = "";
+        String filePath = "./resources/dictionary/dic_hist.txt";
         DictionaryReader dictionaryReaderFile = new DictionaryReader(filePath);
         dictionaryReaderFile.openConnection();
     }
