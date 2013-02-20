@@ -1,0 +1,7 @@
+current root password matans11
+MySql root password matans11
+
+user: fateevdm
+pass: matans90
+
+windows service name: MySQL55
