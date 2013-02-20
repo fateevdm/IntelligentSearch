@@ -6,9 +6,9 @@ bin-release/
 # Other files and folders
 .settings/
 .idea/
-.project
-.classpath
-.iml
+*.project
+*.classpath
+*.iml
 excluded/
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
