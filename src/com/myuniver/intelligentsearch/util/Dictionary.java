@@ -5,11 +5,11 @@ package com.myuniver.intelligentsearch.util;
  * Date: 03.02.13
  * Time: 1:52
  */
-public interface Dictionary<V> {
+public interface Dictionary<K, V> {
 
-    void put(V value);
+    void put(K key, V value);
 
-    V get();
+    V get(K key);
 
     void delete(String key);
 
