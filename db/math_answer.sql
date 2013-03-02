@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 2.11.11.3
 -- http://www.phpmyadmin.net
 --
@@ -7,7 +7,7 @@
 -- Версия сервера: 5.0.77
 -- Версия PHP: 5.1.6
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -26,36 +26,39 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `math_answer` (
-  `id` int(10) NOT NULL auto_increment,
-  `question_id` int(10) NOT NULL default '0',
-  `calculated` int(1) NOT NULL default '0',
-  `answer` varchar(255) NOT NULL default '',
-  `answer_text` text NOT NULL,
-  `correct` int(1) NOT NULL default '0',
-  `visible` int(1) NOT NULL default '0',
-  `basic` int(11) NOT NULL default '0',
-  `qlevel` int(3) NOT NULL default '0',
-  `description` text NOT NULL,
-  `image_link` text NOT NULL,
-  `smark` int(1) NOT NULL default '0',
-  `completeness` int(3) NOT NULL,
-  `price` int(3) NOT NULL,
-  `rudeness` int(3) NOT NULL,
-  `discount` int(3) NOT NULL,
-  `quick_fix` int(1) NOT NULL default '0',
-  `user_added` int(10) NOT NULL,
-  `date_added` datetime NOT NULL,
-  `ipaddress_added` varchar(20) NOT NULL,
-  `added` datetime NOT NULL,
-  `confirmed` int(1) NOT NULL default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=568709 ;
+  `id`              INT(10)      NOT NULL AUTO_INCREMENT,
+  `question_id`     INT(10)      NOT NULL DEFAULT '0',
+  `calculated`      INT(1)       NOT NULL DEFAULT '0',
+  `answer`          VARCHAR(255) NOT NULL DEFAULT '',
+  `answer_text`     TEXT         NOT NULL,
+  `correct`         INT(1)       NOT NULL DEFAULT '0',
+  `visible`         INT(1)       NOT NULL DEFAULT '0',
+  `basic`           INT(11)      NOT NULL DEFAULT '0',
+  `qlevel`          INT(3)       NOT NULL DEFAULT '0',
+  `description`     TEXT         NOT NULL,
+  `image_link`      TEXT         NOT NULL,
+  `smark`           INT(1)       NOT NULL DEFAULT '0',
+  `completeness`    INT(3)       NOT NULL,
+  `price`           INT(3)       NOT NULL,
+  `rudeness`        INT(3)       NOT NULL,
+  `discount`        INT(3)       NOT NULL,
+  `quick_fix`       INT(1)       NOT NULL DEFAULT '0',
+  `user_added`      INT(10)      NOT NULL,
+  `date_added`      DATETIME     NOT NULL,
+  `ipaddress_added` VARCHAR(20)  NOT NULL,
+  `added`           DATETIME     NOT NULL,
+  `confirmed`       INT(1)       NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = cp1251
+  AUTO_INCREMENT = 568709;
 
 --
 -- Дамп данных таблицы `math_answer`
 --
 
-INSERT INTO `math_answer` (`math_answer`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (47515, 12009, 0, 'обществоведение', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
 (47516, 12009, 0, 'философия', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
 (47517, 12009, 0, 'история', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),

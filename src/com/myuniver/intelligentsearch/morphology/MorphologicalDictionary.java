@@ -145,19 +145,37 @@ public class MorphologicalDictionary<V> implements Dictionary<String, V> {
 
     @Override
     public void delete(String key) {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override
     public boolean isEmpty() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return N == 0;
     }
 
     private class Node {
         private char c;                 // character
         private Node left, mid, right;  // left, middle, and right subtries
         private V val;              // value associated with string
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "c=" + c +
+                    ", left=" + left +
+                    ", mid=" + mid +
+                    ", right=" + right +
+                    ", val=" + val +
+                    '}';
+        }
     }
 
+    @Override
+    public String toString() {
+        return "MorphologicalDictionary{" +
+                "N=" + N +
+                ", root=" + root +
+                '}';
+    }
 
 }
