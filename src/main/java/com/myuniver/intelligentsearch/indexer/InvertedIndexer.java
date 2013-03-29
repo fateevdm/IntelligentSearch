@@ -6,4 +6,5 @@ package com.myuniver.intelligentsearch.indexer;
  * Time: 1:48
  */
 public class InvertedIndexer implements Indexer {
+
 }

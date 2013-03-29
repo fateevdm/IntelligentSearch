@@ -1,4 +1,4 @@
-package intelligentsearch;
+package intelligentsearch.stemmer;
 
 import org.junit.Test;
 import org.tartarus.snowball.ext.RussianStemmer;
