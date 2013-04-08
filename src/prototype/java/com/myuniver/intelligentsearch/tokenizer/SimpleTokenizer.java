@@ -12,13 +12,13 @@ public class SimpleTokenizer implements Tokenizer {
     private Tokenizer tokenizer = opennlp.tools.tokenize.SimpleTokenizer.INSTANCE;
 
     @Override
-    public String[] tokenize(String s) {
+    public String[] tokenize(String text) {
 
-        return tokenizer.tokenize(s);
+        return tokenizer.tokenize(text);
     }
 
     @Override
-    public Span[] tokenizePos(String s) {
+    public Span[] tokenizePos(String text) {
         return new Span[0];
     }
 }

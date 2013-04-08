@@ -1,5 +1,7 @@
 package com.myuniver.intelligentsearch.filters;
 
+import java.util.List;
+
 /**
  * User: Dmitry Fateev
  * Date: 29.03.13
@@ -7,4 +9,6 @@ package com.myuniver.intelligentsearch.filters;
  * email: wearing.fateev@gmail.com
  */
 public interface Filter {
+
+    List<String> filter(String[] tokens);
 }

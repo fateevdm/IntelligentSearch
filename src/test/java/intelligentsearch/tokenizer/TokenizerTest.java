@@ -26,4 +26,13 @@ public class TokenizerTest {
         assertArrayEquals("массивы должны быть равны: ", expectedTokens, tokens);
 
     }
+
+    @Test
+    public void testToken_2() {
+        tokenizer = new com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer();
+        String[] tokens = tokenizer.tokenize("А.Д.Михайлов)");
+        for (String word : tokens) {
+            System.out.println("word = " + word);
+        }
+    }
 }
