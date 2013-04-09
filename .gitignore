@@ -8,7 +8,7 @@ bin-release/
 .idea/
 *.project
 *.classpath
-*.iml
+*.i*
 excluded/
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`

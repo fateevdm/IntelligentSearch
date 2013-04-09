@@ -3,6 +3,7 @@ package intelligentsearch.io;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.TreeMultiset;
 import com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer;
+import com.myuniver.intelligentsearch.util.db.DBConfigs;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
 
@@ -10,7 +11,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,17 +30,18 @@ import static org.junit.Assert.assertEquals;
 public class DBTest {
 
     @Test
-    public void dbTest() throws SQLException, IOException {
-        String driverClassName = "com.mysql.jdbc.Driver";
-        String connectionUrl = "jdbc:mysql://localhost:3306/moi_univer";
-        String dbUser = "root";
-        String dbPwd = "matans11";
-        try {
-            Class.forName(driverClassName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Connection connection = DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
+    public void dbTest() throws SQLException, IOException, ClassNotFoundException {
+//        String driverClassName = "com.mysql.jdbc.Driver";
+//        String connectionUrl = "jdbc:mysql://localhost:3306/moi_univer";
+//        String dbUser = "root";
+//        String dbPwd = "matans11";
+//        try {
+//            Class.forName(driverClassName);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        Connection connection = DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
+        Connection connection = DBConfigs.getConnection();
         PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer\n" +
                 "FROM math_question,math_answer\n" +
                 "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
