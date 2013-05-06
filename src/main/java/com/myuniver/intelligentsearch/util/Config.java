@@ -25,10 +25,7 @@ public class Config {
 
     private static class Prop {
         private static final Config props = new Config();
-
-
     }
-
 
     public String getProperty(String key) {
         return properties.getProperty(key);

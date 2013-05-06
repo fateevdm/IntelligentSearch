@@ -7,5 +7,5 @@ package com.myuniver.intelligentsearch.stemmer;
  */
 public interface Stemmer {
 
-    String[] stemm(String[] tokens);
+    String stemm(String token);
 }

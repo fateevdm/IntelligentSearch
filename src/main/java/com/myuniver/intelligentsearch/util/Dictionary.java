@@ -1,5 +1,8 @@
 package com.myuniver.intelligentsearch.util;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * User: Dima
  * Date: 03.02.13
@@ -7,22 +10,28 @@ package com.myuniver.intelligentsearch.util;
  */
 public interface Dictionary<K, V> {
 
-    void put(K key, V value);
+    Dictionary<K, V> put(K key, V value);
 
     V get(K key);
 
-    void delete(String key);
+    K getByValue(V value);
+
+    V delete(String key);
 
     boolean isEmpty();
 
-    boolean contains(String key);
+    boolean containsKey(String key);
+
+    boolean containsValue(V value);
+
+    Set<Map.Entry<K, V>> entrySet();
 
     int size();
 
     Iterable<String> keys();
 
-    int hashCode();
+    Dictionary<K, V> clear();
 
-    boolean equals(Object o);
+    Dictionary<K, V> putAll(Dictionary<? extends K, ? extends V> dict);
 
 }

@@ -3,7 +3,9 @@ package com.myuniver.intelligentsearch.morphology;
 import com.myuniver.intelligentsearch.util.Dictionary;
 
 import java.util.ArrayDeque;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * User: Dima
@@ -14,6 +16,31 @@ public class MorphologicalDictionary<V> implements Dictionary<String, V> {
 
     private int N;       // size
     private Node root;   // root of TST
+
+    @Override
+    public String getByValue(V value) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean containsValue(V value) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Set<Map.Entry<String, V>> entrySet() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Dictionary<String, V> clear() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Dictionary<String, V> putAll(Dictionary<? extends String, ? extends V> dict) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
     /**
      * return number of key-value pairs
@@ -26,7 +53,7 @@ public class MorphologicalDictionary<V> implements Dictionary<String, V> {
      * Is string key in the symbol table?
      */
     @Override
-    public boolean contains(String key) {
+    public boolean containsKey(String key) {
         return get(key) != null;
     }
 
@@ -55,9 +82,10 @@ public class MorphologicalDictionary<V> implements Dictionary<String, V> {
      * Insert string s into the symbol table.
      */
     @Override
-    public void put(String s, V val) {
-        if (!contains(s)) N++;
+    public Dictionary<String, V> put(String s, V val) {
+        if (!containsKey(s)) N++;
         root = put(root, s, val, 0);
+        return this;
     }
 
     private Node put(Node x, String s, V val, int d) {
@@ -146,8 +174,8 @@ public class MorphologicalDictionary<V> implements Dictionary<String, V> {
     }
 
     @Override
-    public void delete(String key) {
-
+    public V delete(String key) {
+        return null;
     }
 
     @Override

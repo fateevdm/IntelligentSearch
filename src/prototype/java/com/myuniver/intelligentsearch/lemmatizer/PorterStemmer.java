@@ -1,7 +1,7 @@
 package com.myuniver.intelligentsearch.lemmatizer;
 
 
-import org.tartarus.snowball.ext.RussianStemmer;
+import org.tartarus.snowball.ext.russianStemmer;
 
 /**
  * User: Dmitry Fateev
@@ -9,7 +9,16 @@ import org.tartarus.snowball.ext.RussianStemmer;
  * Time: 23:25
  */
 public class PorterStemmer {
-    private final RussianStemmer stemmer = new RussianStemmer();
+    private final russianStemmer stemmer = new russianStemmer();
+
+    public String stemm(String string) {
+        String copy = string;
+        stemmer.setCurrent(copy);
+        if (stemmer.stem()) {
+            return stemmer.getCurrent();
+        }
+        return string;
+    }
 
 
 }

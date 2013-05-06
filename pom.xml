@@ -1,92 +1,112 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<!--<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+         <!--xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+    <!--<modelVersion>4.0.0</modelVersion>-->
 
-    <groupId>com.myuniver.intelligentsearch</groupId>
-    <artifactId>IntelligentSearch</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <!--<groupId>com.myuniver.intelligentsearch</groupId>-->
+    <!--<artifactId>IntelligentSearch</artifactId>-->
+    <!--<version>1.0-SNAPSHOT</version>-->
+    <!--<packaging>jar</packaging>-->
 
-    <name>IntelligentSearch</name>
-    <url>http://maven.apache.org</url>
+    <!--<name>IntelligentSearch</name>-->
+    <!--<url>http://maven.apache.org</url>-->
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>edu.ucla.sspace</groupId>
-            <artifactId>sspace</artifactId>
-            <version>2.0</version>
-        </dependency>
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+    <!--</properties>-->
+    <!--<dependencies>-->
 
-        <dependency>
-            <groupId>org.apache.opennlp</groupId>
-            <artifactId>opennlp-tools</artifactId>
-            <version>1.5.2-incubating</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.guava</groupId>-->
+            <!--<artifactId>guava</artifactId>-->
+            <!--<version>14.0.1</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.opennlp</groupId>
-            <artifactId>opennlp-uima</artifactId>
-            <version>1.5.2-incubating</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>edu.ucla.sspace</groupId>-->
+            <!--<artifactId>sspace</artifactId>-->
+            <!--<version>2.0</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.opennlp</groupId>
-            <artifactId>opennlp-maxent</artifactId>
-            <version>3.0.2-incubating</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.opennlp</groupId>-->
+            <!--<artifactId>opennlp-tools</artifactId>-->
+            <!--<version>1.5.2-incubating</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-core</artifactId>
-            <version>4.1.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.opennlp</groupId>-->
+            <!--<artifactId>opennlp-uima</artifactId>-->
+            <!--<version>1.5.2-incubating</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-analyzers-common</artifactId>
-            <version>4.1.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.opennlp</groupId>-->
+            <!--<artifactId>opennlp-maxent</artifactId>-->
+            <!--<version>3.0.2-incubating</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.mahout</groupId>
-            <artifactId>mahout-core</artifactId>
-            <version>0.7</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.lucene</groupId>-->
+            <!--<artifactId>lucene-core</artifactId>-->
+            <!--<version>4.1.0</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.languagetool</groupId>
-            <artifactId>languagetool</artifactId>
-            <version>2.0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.lucene</groupId>-->
+            <!--<artifactId>lucene-analyzers-common</artifactId>-->
+            <!--<version>4.1.0</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
+        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+            <!--&lt;!&ndash;<groupId>org.apache.mahout</groupId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>mahout-core</artifactId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<version>0.7</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
 
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>1.1.2</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.languagetool</groupId>-->
+            <!--<artifactId>languagetool</artifactId>-->
+            <!--<version>2.0.1</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.24</version>
-        </dependency>
-    </dependencies>
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.11</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
-    <!--<repositories>-->
-    <!--<repository>-->
-    <!--<id>MVN repo</id>-->
-    <!--<url>http://mvnrepository.com/</url>-->
-    <!--</repository>-->
-    <!--</repositories>-->
+        <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
+            <!--&lt;!&ndash;<groupId>org.apache.hadoop</groupId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>hadoop-core</artifactId>&ndash;&gt;-->
+            <!--&lt;!&ndash;<version>1.1.2</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
 
-</project>
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>5.1.24</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--<version>1.7.5</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-simple</artifactId>-->
+            <!--<version>1.7.5</version>-->
+        <!--</dependency>-->
+
+    <!--</dependencies>-->
+
+    <!--&lt;!&ndash;<repositories>&ndash;&gt;-->
+    <!--&lt;!&ndash;<repository>&ndash;&gt;-->
+    <!--&lt;!&ndash;<id>MVN repo</id>&ndash;&gt;-->
+    <!--&lt;!&ndash;<url>http://mvnrepository.com/</url>&ndash;&gt;-->
+    <!--&lt;!&ndash;</repository>&ndash;&gt;-->
+    <!--&lt;!&ndash;</repositories>&ndash;&gt;-->
+
+<!--</project>-->

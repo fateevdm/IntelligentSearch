@@ -2,6 +2,9 @@ package com.myuniver.intelligentsearch.questionanalyzer;
 
 import opennlp.tools.util.Span;
 
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * This class provides methods that modify a question to facilitate pattern
  * matching and to anticipate the format of text passages that answer the
@@ -23,6 +26,15 @@ public class QuestionNormalizer {
         String[] tokens = replacedString.split(WHITESPACE);
         return tokens;
 
+    }
+
+    public static String concatWithSpace(List<String> stemms) {
+        StringBuilder string = new StringBuilder();
+        Iterator<String> iter = stemms.iterator();
+        while (iter.hasNext()) {
+            string.append(iter.next()).append(" ");
+        }
+        return string.toString();
     }
 }
 

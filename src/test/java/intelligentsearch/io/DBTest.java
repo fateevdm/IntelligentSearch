@@ -2,10 +2,15 @@ package intelligentsearch.io;
 
 import com.google.common.collect.Multiset;
 import com.google.common.collect.TreeMultiset;
+import com.myuniver.intelligentsearch.filters.Filter;
+import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer;
 import com.myuniver.intelligentsearch.util.db.DBConfigs;
+import com.myuniver.intelligentsearch.util.io.StopWordReader;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -29,47 +34,41 @@ import static org.junit.Assert.assertEquals;
  */
 public class DBTest {
 
+    private Logger log = LoggerFactory.getLogger(DBTest.class);
+
     @Test
     public void dbTest() throws SQLException, IOException, ClassNotFoundException {
-//        String driverClassName = "com.mysql.jdbc.Driver";
-//        String connectionUrl = "jdbc:mysql://localhost:3306/moi_univer";
-//        String dbUser = "root";
-//        String dbPwd = "matans11";
-//        try {
-//            Class.forName(driverClassName);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        Connection connection = DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
         Connection connection = DBConfigs.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer\n" +
+        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer,math_answer.id, math_question.id\n" +
                 "FROM math_question,math_answer\n" +
                 "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
         ResultSet result = statement.executeQuery();
         Multiset<String> tokens = TreeMultiset.create();
+        StopWordReader stopWordReader = new StopWordReader();
+        Set<String> stopWords = stopWordReader.getData();
+        Filter filter = new TokenFilter(stopWords);
         Tokenizer tokenizer = new SimpleTokenizer();
         while (result.next()) {
             String text = result.getString("math_question.question") + " " + result.getString("answer");
-//            System.out.println(result.getString("math_question.question") + " " + result.getString("answer"));
             String[] words = tokenizer.tokenize(text);
-            Collections.addAll(tokens, words);
+            List<String> filteredTokens = filter.filter(words);
+            tokens.addAll(filteredTokens);
 
         }
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("tokens_count.csv")));
-        out.println("#token | count");
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("tokens_count_filtered.csv")));
+        out.println("#token ; count");
         Set<String> elements = tokens.elementSet();
 
         List<Pair> pairsTokens = new ArrayList<>();
         for (String token : elements) {
-//            out.println(token + "\t" + tokens.count(token));
-
             pairsTokens.add(new Pair(token, tokens.count(token)));
         }
         assertEquals("размеры коллекций должны быть равны: ", elements.size(), pairsTokens.size());
         Collections.sort(pairsTokens);
+        int line = 1;
         for (Pair pair : pairsTokens) {
             out.println(pair.first + " ; " + pair.second);
-            System.out.println(pair);
+            log.info("line {}: [token = {}, freq = {}]", line++, pair.first, pair.second);
         }
         out.close();
     }

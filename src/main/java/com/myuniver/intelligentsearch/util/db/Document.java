@@ -1,6 +1,8 @@
 package com.myuniver.intelligentsearch.util.db;
 
-import java.util.HashMap;
+import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableMultiset;
+import com.google.common.collect.Multiset;
 
 /**
  * User: Dmitry Fateev
@@ -9,9 +11,11 @@ import java.util.HashMap;
  */
 public class Document implements Comparable<Document> {
 
+    private int id;
     private String text;
+    private String fact;
     // the terms and their freqs
-    private HashMap<String, Integer> terms;
+    private Multiset<String> terms;
 
     // the length in bytes of the doc
     private int length;
@@ -19,16 +23,15 @@ public class Document implements Comparable<Document> {
     // when the doc is retrieved, it gets a score
     private double score = 0;
 
-    public Document(String text) {
+    public Document(String text, int id, Multiset<String> terms, String fact) {
+        this.fact = fact;
+        this.terms = terms;
+        this.id = id;
         this.text = text;
     }
 
-    public HashMap<String, Integer> getTerms() {
-        return terms;
-    }
-
-    public void setTerms(HashMap<String, Integer> terms) {
-        this.terms = terms;
+    public Multiset<String> getTerms() {
+        return ImmutableMultiset.copyOf(terms);
     }
 
     public int getLength() {
@@ -55,6 +58,14 @@ public class Document implements Comparable<Document> {
         return text;
     }
 
+    public String getFact() {
+        return fact;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     @Override
     public int compareTo(Document o) {
         if (this.score < o.score) {
@@ -65,19 +76,19 @@ public class Document implements Comparable<Document> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Document document = (Document) o;
-
-        if (!text.equals(document.text)) return false;
-
-        return true;
+    public int hashCode() {
+        return Objects.hashCode(id, score);
     }
 
     @Override
-    public int hashCode() {
-        return text.hashCode();
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Document other = (Document) obj;
+        return Objects.equal(this.id, other.id) && Objects.equal(this.score, other.score);
     }
 }
