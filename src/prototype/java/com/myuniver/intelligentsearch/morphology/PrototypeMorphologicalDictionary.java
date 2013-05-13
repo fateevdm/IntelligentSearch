@@ -3,7 +3,9 @@ package com.myuniver.intelligentsearch.morphology;
 import com.myuniver.intelligentsearch.util.Dictionary;
 
 import java.util.ArrayDeque;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * User: Dima
@@ -18,6 +20,7 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
     /**
      * return number of key-value pairs
      */
+    @Override
     public int size() {
         return N;
     }
@@ -26,7 +29,7 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
      * Is string key in the symbol table?
      */
     @Override
-    public boolean contains(String key) {
+    public boolean containsKey(String key) {
         return get(key) != null;
     }
 
@@ -55,9 +58,10 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
      * Insert string s into the symbol table.
      */
     @Override
-    public void put(String s, V val) {
-        if (!contains(s)) N++;
+    public Dictionary<String, V> put(String s, V val) {
+        if (!containsKey(s)) N++;
         root = put(root, s, val, 0);
+        return this;
     }
 
     private Node put(Node x, String s, V val, int d) {
@@ -95,6 +99,7 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
     }
 
     // all keys in symbol table
+    @Override
     public Iterable<String> keys() {
         Queue<String> queue = new ArrayDeque<>();
         collect(root, "", queue);
@@ -146,13 +151,39 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
     }
 
     @Override
-    public void delete(String key) {
+    public V delete(String key) {
 
+        return null;
     }
 
     @Override
     public boolean isEmpty() {
         return N == 0;
+    }
+
+    @Override
+    public String getByValue(V value) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean containsValue(V value) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Set<Map.Entry<String, V>> entrySet() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Dictionary<String, V> clear() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Dictionary<String, V> putAll(Dictionary<? extends String, ? extends V> dict) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private class Node {

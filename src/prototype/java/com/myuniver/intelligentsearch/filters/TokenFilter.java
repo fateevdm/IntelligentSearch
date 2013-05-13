@@ -1,5 +1,6 @@
 package com.myuniver.intelligentsearch.filters;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,12 +18,18 @@ public class TokenFilter implements Filter {
     }
 
     @Override
-    public List<String> filter(String[] filter) {
-
-        return null;
+    public List<String> filter(String[] tokens) {
+        List<String> accepted = new ArrayList<>();
+        for (String token : tokens) {
+            token = token.toLowerCase();
+            if (accept(token)) {
+                accepted.add(token);
+            }
+        }
+        return accepted;
     }
 
     protected boolean accept(String token) {
-        return excluded.contains(token);
+        return !(excluded.contains(token));
     }
 }

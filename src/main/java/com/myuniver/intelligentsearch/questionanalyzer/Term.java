@@ -283,7 +283,7 @@ public class Term implements Serializable {
 		double intersect = 0;
 		int union = lookupSet.size();
 		for (String token : tokenSet)
-			if (lookupSet.contains(token)) intersect++; else union++;
+			if (lookupSet.containsKey(token)) intersect++; else union++;
 		double simScore = intersect / union;
 		
 		// calculate similarity scores for the expansions
@@ -298,7 +298,7 @@ public class Term implements Serializable {
 			intersect = 0;
 			union = lookupSet.size();
 			for (String token : tokenSet)
-				if (lookupSet.contains(token)) intersect++; else union++;
+				if (lookupSet.containsKey(token)) intersect++; else union++;
 			simScore = Math.max(simScore, weight * (intersect / union));
 		}
 		

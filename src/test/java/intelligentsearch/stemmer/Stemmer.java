@@ -1,7 +1,7 @@
 package intelligentsearch.stemmer;
 
 import org.junit.Test;
-import org.tartarus.snowball.ext.RussianStemmer;
+import org.tartarus.snowball.ext.russianStemmer;
 
 /**
  * User: Dmitry Fateev
@@ -12,7 +12,7 @@ public class Stemmer {
 
     @Test
     public void stemmerTest() {
-        RussianStemmer stemmer = new RussianStemmer();
+        russianStemmer stemmer = new russianStemmer();
         String[] expectedTokens = {"В", "каком", "году", "было", "Крещение", "Руси"};
         for (String word : expectedTokens) {
             stemmer.setCurrent(word);

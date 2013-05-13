@@ -3,10 +3,8 @@ package intelligentsearch.morfology;
 import com.myuniver.intelligentsearch.morphology.MorphologicalDictionary;
 import org.junit.Test;
 
-import java.util.Iterator;
-
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * User: Dima
@@ -23,11 +21,10 @@ public class MorfologyDictionaryTest {
         dictionary.put("революцией", "rev");
         String val = dictionary.get("революция");
         assertEquals("rev", val);
-        assertFalse("если элемента нет в словаре, то должно быть false", dictionary.contains("привет"));
+        assertFalse("если элемента нет в словаре, то должно быть false", dictionary.containsKey("привет"));
         Iterable<String> prefixes = dictionary.prefixMatch("револ");
-        Iterator<String> iter = prefixes.iterator();
-        while (iter.hasNext()) {
-            System.out.println(iter.next());
+        for (String prefixe : prefixes) {
+            System.out.println(prefixe);
         }
         String longestPrefix = dictionary.longestPrefixOf("революционная");
         System.out.println("prefix: " + longestPrefix);
