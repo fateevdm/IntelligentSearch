@@ -73,6 +73,24 @@ public class DBTest {
         out.close();
     }
 
+    @Test
+    public void dbTest_2() throws SQLException, ClassNotFoundException {
+        Connection connection = DBConfigs.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer,math_answer.id, math_question.id\n" +
+                "FROM math_question,math_answer\n" +
+                "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            String text = result.getString("question");
+            String fact = result.getString("answer");
+            int questionId = result.getInt("math_question.id");
+            int answerId = result.getInt("math_answer.id");
+            int row = result.getRow();
+            log.info("\nrow {};\nquestion.id {} = question {};\nanswer.id {} = answer {};", row, questionId, text, answerId, fact);
+
+        }
+    }
+
     private static class Pair<K> implements Comparable<Pair> {
         K first;
         int second;

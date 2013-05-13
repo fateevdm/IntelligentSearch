@@ -28,6 +28,10 @@ public class Word implements Comparable<Word> {
         return normalForm;
     }
 
+    public String getStemma() {
+        return stemma;
+    }
+
     public Set<String> getDerivativeForms() {
         return derivativeForms;
     }

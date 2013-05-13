@@ -61,7 +61,7 @@ public class DictionaryReader {
                     .addMorpheme(morpheme);
             dictionary.put(morpheme, word);
             wordsSet.add(word);
-            LOGGER.info("morpheme {}; normal {}; stemm {}", dictionary.getByValue(word), dictionary.get(morpheme));
+//            LOGGER.info("morpheme {}; normal {}; stemm {}", dictionary.getByValue(word), dictionary.get(morpheme));
         }
         return dictionary;
     }

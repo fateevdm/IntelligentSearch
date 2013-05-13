@@ -1,21 +1,28 @@
 package com.myuniver.intelligentsearch.util.db;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
+import edu.ucla.sspace.text.Document;
+
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java.util.List;
 
 /**
  * User: Dmitry Fateev
  * Date: 06.03.13
  * Time: 2:00
  */
-public class Document implements Comparable<Document> {
+public class PrototypeDocument implements Comparable<PrototypeDocument>, Document {
 
-    private int id;
-    private String text;
-    private String fact;
+    private final int id;
+    private final String text;
+    private final String fact;
+    private final String originText;
     // the terms and their freqs
-    private Multiset<String> terms;
+    private Multiset<String> terms = HashMultiset.create();
 
     // the length in bytes of the doc
     private int length;
@@ -23,11 +30,12 @@ public class Document implements Comparable<Document> {
     // when the doc is retrieved, it gets a score
     private double score = 0;
 
-    public Document(String text, int id, Multiset<String> terms, String fact) {
+    public PrototypeDocument(String text, int id, List<String> terms, String fact, String originText) {
         this.fact = fact;
-        this.terms = terms;
         this.id = id;
         this.text = text;
+        this.originText = originText;
+        terms.addAll(terms);
     }
 
     public Multiset<String> getTerms() {
@@ -38,20 +46,28 @@ public class Document implements Comparable<Document> {
         return length;
     }
 
-    public void setLength(int length) {
+    public PrototypeDocument setLength(int length) {
         this.length = length;
+        return this;
     }
 
     public double getScore() {
         return score;
     }
 
-    public void addScore(double score) {
+    public PrototypeDocument addScore(double score) {
         this.score += score;
+        return this;
     }
 
-    public void setScore(double score) {
+    public PrototypeDocument deductScore(double score) {
+        this.score -= score;
+        return this;
+    }
+
+    public PrototypeDocument setScore(double score) {
         this.score = score;
+        return this;
     }
 
     public String getText() {
@@ -66,8 +82,17 @@ public class Document implements Comparable<Document> {
         return id;
     }
 
+    public String getOriginText() {
+        return originText;
+    }
+
     @Override
-    public int compareTo(Document o) {
+    public BufferedReader reader() {
+        return new BufferedReader(new StringReader(text));
+    }
+
+    @Override
+    public int compareTo(PrototypeDocument o) {
         if (this.score < o.score) {
             return 1;
         } else if (this.score > o.score) {
@@ -88,7 +113,7 @@ public class Document implements Comparable<Document> {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final Document other = (Document) obj;
+        final PrototypeDocument other = (PrototypeDocument) obj;
         return Objects.equal(this.id, other.id) && Objects.equal(this.score, other.score);
     }
 }
