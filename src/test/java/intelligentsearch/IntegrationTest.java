@@ -1,5 +1,7 @@
 package intelligentsearch;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import com.myuniver.intelligentsearch.Word;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
@@ -14,11 +16,13 @@ import com.myuniver.intelligentsearch.util.db.PrototypeDocument;
 import com.myuniver.intelligentsearch.util.io.DictionaryReader;
 import com.myuniver.intelligentsearch.util.io.StopWordReader;
 import edu.ucla.sspace.basis.StringBasisMapping;
+import edu.ucla.sspace.common.DocumentVectorBuilder;
 import edu.ucla.sspace.common.Similarity;
 import edu.ucla.sspace.lsa.LatentSemanticAnalysis;
 import edu.ucla.sspace.matrix.LogEntropyTransform;
 import edu.ucla.sspace.matrix.SVD;
 import edu.ucla.sspace.text.Document;
+import edu.ucla.sspace.vector.CompactSparseVector;
 import edu.ucla.sspace.vector.DoubleVector;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
@@ -86,12 +90,15 @@ public class IntegrationTest {
             documents.add(document);
         }
 
+        BiMap<Integer,Integer> fromDBToLSA = HashBiMap.create();
         LatentSemanticAnalysis lsa = new LatentSemanticAnalysis(true, 300, new LogEntropyTransform(),
                 SVD.getFastestAvailableFactorization(),
                 false, new StringBasisMapping());
         Iterator<Document> i = documents.iterator();
+        int lsaIndex = 0;
         while (i.hasNext()) {
-            Document document = i.next();
+            PrototypeDocument document = (PrototypeDocument) i.next();
+            fromDBToLSA.put(document.getId(),lsaIndex++);
             lsa.processDocument(document.reader());
         }
         lsa.processSpace(new Properties());
@@ -107,6 +114,28 @@ public class IntegrationTest {
         LOGGER.info("\nword vector\nlength {};\nmagnitude {};\nvector {}", vector2.length(), vector2.magnitude(), vector2);
         double sim = Similarity.getSimilarity(Similarity.SimType.COSINE, vector, vector2);
         LOGGER.info("sim {}", sim);
+        DocumentVectorBuilder vectorBuilder = new DocumentVectorBuilder(lsa);
+        String toCheck = "Наука, изучающя не только законы и закономерности общественного развития в целом, " +
+                "но и конкретные процессы становления, развития и преобразования различных стран и народов во всем их многообразии " +
+                "и неповторимости:";
+        String[] words = tokenizer.tokenize(toCheck);
+        List<String> filteredTokens = filter.filter(words);
+        List<String> stemmedTokens = new ArrayList<>(filteredTokens.size());
+
+        for (String token : filteredTokens) {
+            Word lemma = dictionary.get(token);
+            if (lemma == null) {
+                String stemm = stemmer.stemm(token);
+                stemmedTokens.add(stemm);
+            } else {
+                stemmedTokens.add(lemma.getStemma());
+            }
+
+        }
+        String filteredText = QuestionNormalizer.concatWithSpace(stemmedTokens);
+        Document document = new PrototypeDocument(filteredText, 0, stemmedTokens, PrototypeDocument.QUESTION, toCheck);
+
+        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new CompactSparseVector());
 
 //        while (size>=0){
 //            DoubleVector doubleVector= lsa.getDocumentVector(size);
@@ -114,5 +143,15 @@ public class IntegrationTest {
 //            --size;
 //        }
 
+    }
+
+    static class Pair {
+        int idFromDB;
+        int idFromLSA;
+
+        Pair(int idFromDB, int idFromLSA) {
+            this.idFromDB = idFromDB;
+            this.idFromLSA = idFromLSA;
+        }
     }
 }

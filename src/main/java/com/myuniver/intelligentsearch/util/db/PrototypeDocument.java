@@ -16,7 +16,7 @@ import java.util.List;
  * Time: 2:00
  */
 public class PrototypeDocument implements Comparable<PrototypeDocument>, Document {
-
+    public static final String QUESTION = "question";
     private final int id;
     private final String text;
     private final String fact;
