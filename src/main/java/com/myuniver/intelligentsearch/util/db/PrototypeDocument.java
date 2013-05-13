@@ -102,7 +102,7 @@ public class PrototypeDocument implements Comparable<PrototypeDocument>, Documen
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, score);
+        return Objects.hashCode(id, text, fact, originText);
     }
 
     @Override
@@ -114,6 +114,19 @@ public class PrototypeDocument implements Comparable<PrototypeDocument>, Documen
             return false;
         }
         final PrototypeDocument other = (PrototypeDocument) obj;
-        return Objects.equal(this.id, other.id) && Objects.equal(this.score, other.score);
+        return Objects.equal(this.id, other.id) && Objects.equal(this.text, other.text) && Objects.equal(this.fact, other.fact) && Objects.equal(this.originText, other.originText);
+    }
+
+    @Override
+    public String toString() {
+        return "PrototypeDocument{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", fact='" + fact + '\'' +
+                ", originText='" + originText + '\'' +
+                ", terms=" + terms +
+                ", length=" + length +
+                ", score=" + score +
+                '}';
     }
 }

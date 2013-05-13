@@ -1,7 +1,5 @@
 package intelligentsearch;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
 import com.myuniver.intelligentsearch.Word;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
@@ -17,18 +15,21 @@ import com.myuniver.intelligentsearch.util.io.DictionaryReader;
 import com.myuniver.intelligentsearch.util.io.StopWordReader;
 import edu.ucla.sspace.basis.StringBasisMapping;
 import edu.ucla.sspace.common.DocumentVectorBuilder;
+import edu.ucla.sspace.common.SemanticSpaceIO;
 import edu.ucla.sspace.common.Similarity;
 import edu.ucla.sspace.lsa.LatentSemanticAnalysis;
 import edu.ucla.sspace.matrix.LogEntropyTransform;
 import edu.ucla.sspace.matrix.SVD;
 import edu.ucla.sspace.text.Document;
-import edu.ucla.sspace.vector.CompactSparseVector;
+import edu.ucla.sspace.vector.DenseVector;
 import edu.ucla.sspace.vector.DoubleVector;
 import opennlp.tools.tokenize.Tokenizer;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,15 +47,24 @@ import static org.junit.Assert.assertEquals;
 public class IntegrationTest {
     public static final Logger LOGGER = LoggerFactory.getLogger(IntegrationTest.class);
     String dictionaryPath = Config.getConfig().getProperty("dictionary.simple");
+    private Connection connection;
+
+
+    @Before
+    public void setUp() throws SQLException, ClassNotFoundException {
+        connection = DBConfigs.getConnection();
+    }
+
 
     @Test
-    public void runIntegrationTest() throws IOException, SQLException, ClassNotFoundException {
+    public void runIntegrationTest() throws IOException, SQLException {
+
         LOGGER.info("=======first step - load data from files =======");
         DictionaryReader reader = new DictionaryReader(dictionaryPath);
         Dictionary<String, Word> dictionary = reader.openConnection();
         Stemmer stemmer = SimpleStemmer.getStemmer();
         LOGGER.info("=======second step - load data from DB =======");
-        Connection connection = DBConfigs.getConnection();
+
         PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer,math_answer.question_id, math_question.id\n" +
                 "FROM math_question,math_answer\n" +
                 "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
@@ -90,34 +100,39 @@ public class IntegrationTest {
             documents.add(document);
         }
 
-        BiMap<Integer,Integer> fromDBToLSA = HashBiMap.create();
-        LatentSemanticAnalysis lsa = new LatentSemanticAnalysis(true, 300, new LogEntropyTransform(),
+//        BiMap<Integer, PrototypeDocument> fromDBToLSA = HashBiMap.create();
+        Map<Integer, PrototypeDocument> fromDBToLSA = new HashMap<>();
+        LatentSemanticAnalysis analyzer = new LatentSemanticAnalysis(true, 300, new LogEntropyTransform(),
                 SVD.getFastestAvailableFactorization(),
                 false, new StringBasisMapping());
         Iterator<Document> i = documents.iterator();
         int lsaIndex = 0;
         while (i.hasNext()) {
             PrototypeDocument document = (PrototypeDocument) i.next();
-            fromDBToLSA.put(document.getId(),lsaIndex++);
-            lsa.processDocument(document.reader());
+            fromDBToLSA.put(lsaIndex, document);
+            analyzer.processDocument(document.reader());
+            ++lsaIndex;
         }
-        lsa.processSpace(new Properties());
-        int size = lsa.documentSpaceSize();
+        analyzer.processSpace(new Properties());
+        int size = analyzer.documentSpaceSize();
+        SemanticSpaceIO.save(analyzer, new File("semantic_space_text.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
+        SemanticSpaceIO.save(analyzer, new File("semantic_space_text_sparse.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
         LOGGER.info("document space size {}", size);
-        int countWords = lsa.getWords().size();
+        int countWords = analyzer.getWords().size();
         LOGGER.info("words {}", countWords);
-        DoubleVector doubleVector = lsa.getDocumentVector(size - 1);
+        DoubleVector doubleVector = analyzer.getDocumentVector(size - 1);
         LOGGER.info("length {};\nmagnitude {};\nvector {}", doubleVector.length(), doubleVector.magnitude(), doubleVector);
-        edu.ucla.sspace.vector.Vector vector = lsa.getVector("месяц");
-        LOGGER.info("\nword vector\nlength {};\nmagnitude {};\nvector {}", vector.length(), vector.magnitude(), vector);
-        edu.ucla.sspace.vector.Vector vector2 = lsa.getVector("апрель");
+        edu.ucla.sspace.vector.Vector vector1 = analyzer.getVector("месяц");
+        LOGGER.info("\nword vector\nlength {};\nmagnitude {};\nvector {}", vector1.length(), vector1.magnitude(), vector1);
+        edu.ucla.sspace.vector.Vector vector2 = analyzer.getVector("апрель");
         LOGGER.info("\nword vector\nlength {};\nmagnitude {};\nvector {}", vector2.length(), vector2.magnitude(), vector2);
-        double sim = Similarity.getSimilarity(Similarity.SimType.COSINE, vector, vector2);
+        double sim = Similarity.getSimilarity(Similarity.SimType.KL_DIVERGENCE, vector1, vector2);
         LOGGER.info("sim {}", sim);
-        DocumentVectorBuilder vectorBuilder = new DocumentVectorBuilder(lsa);
-        String toCheck = "Наука, изучающя не только законы и закономерности общественного развития в целом, " +
-                "но и конкретные процессы становления, развития и преобразования различных стран и народов во всем их многообразии " +
-                "и неповторимости:";
+        DocumentVectorBuilder vectorBuilder = new DocumentVectorBuilder(analyzer);
+//        String toCheck = "Наука, изучающя не только законы и закономерности общественного развития в целом, " +
+//                "но и конкретные процессы становления, развития и преобразования различных стран и народов во всем их многообразии " +
+//                "и неповторимости:";
+        String toCheck = "Куликовская битва";
         String[] words = tokenizer.tokenize(toCheck);
         List<String> filteredTokens = filter.filter(words);
         List<String> stemmedTokens = new ArrayList<>(filteredTokens.size());
@@ -135,14 +150,39 @@ public class IntegrationTest {
         String filteredText = QuestionNormalizer.concatWithSpace(stemmedTokens);
         Document document = new PrototypeDocument(filteredText, 0, stemmedTokens, PrototypeDocument.QUESTION, toCheck);
 
-        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new CompactSparseVector());
+        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(300));
+        TreeMap<Double, PrototypeDocument> score2Document = new TreeMap<>();
+        LOGGER.info("fromDb2LSA size {}", fromDBToLSA.size());
+        for (Map.Entry<Integer, PrototypeDocument> entry : fromDBToLSA.entrySet()) {
+            int index = entry.getKey();
+            DoubleVector vector = analyzer.getDocumentVector(index);
+            double similarity = Similarity.getSimilarity(Similarity.SimType.AVERAGE_COMMON_FEATURE_RANK, vector, stringVector);
+            PrototypeDocument doc = entry.getValue();
+            doc.setScore(similarity);
+            score2Document.put(similarity, doc);
+        }
+        LOGGER.info("score2Document size {}", score2Document.size());
+        for (Map.Entry<Double, PrototypeDocument> entry : score2Document.entrySet()) {
+            LOGGER.info("entry: {}", entry);
+        }
+        LOGGER.info("first elem: {}", score2Document.firstEntry());
+        LOGGER.info("last elem: {}", score2Document.lastEntry());
 
-//        while (size>=0){
-//            DoubleVector doubleVector= lsa.getDocumentVector(size);
-//            LOGGER.info("double vector {}", doubleVector);
-//            --size;
-//        }
 
+    }
+
+    private String getDocumentById(int docId) throws SQLException {
+        docId = 12333;
+        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_question.id\n" +
+                "FROM math_question,math_answer\n" +
+                "WHERE math_question.id =?");
+        statement.setInt(1, docId);
+        ResultSet result = statement.executeQuery();
+        String originText = result.getString("question");
+        String fact = result.getString("answer");
+        int questionId = result.getInt("math_question.id");
+        int answerId = result.getInt("math_answer.question_id");
+        return originText;
     }
 
     static class Pair {
