@@ -8,8 +8,6 @@ import com.myuniver.intelligentsearch.morphology.PrototypeSimpleDictionary;
 import com.myuniver.intelligentsearch.stemmer.SimpleStemmer;
 import com.myuniver.intelligentsearch.stemmer.Stemmer;
 import com.myuniver.intelligentsearch.util.Dictionary;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,7 +23,6 @@ public class DictionaryReader {
     private InputStream dataStream;
     private Dictionary<String, Word> dictionary = PrototypeSimpleDictionary.create();
     private Stemmer stemmer = SimpleStemmer.getStemmer();
-    public static final Logger LOGGER = LoggerFactory.getLogger(DictionaryReader.class);
     private Multiset<Word> wordsSet = HashMultiset.create();
     private final String COMMENT = "#";
 
@@ -38,9 +35,9 @@ public class DictionaryReader {
     }
 
     /**
-     * Читает
+     * Читает из файла строки с данными для словаря, парсит и складывает в словарь
      *
-     * @return
+     * @return словарь пар <Стемма, Word>
      */
     public Dictionary<String, Word> openConnection() {
         Scanner scanner = new Scanner(dataStream);
@@ -61,7 +58,6 @@ public class DictionaryReader {
                     .addMorpheme(morpheme);
             dictionary.put(morpheme, word);
             wordsSet.add(word);
-//            LOGGER.info("morpheme {}; normal {}; stemm {}", dictionary.getByValue(word), dictionary.get(morpheme));
         }
         return dictionary;
     }

@@ -65,9 +65,9 @@ public class IntegrationTest {
         Stemmer stemmer = SimpleStemmer.getStemmer();
         LOGGER.info("=======second step - load data from DB =======");
 
-        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer,math_answer.question_id, math_question.id\n" +
-                "FROM math_question,math_answer\n" +
-                "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
+        PreparedStatement statement = connection.prepareStatement("SELECT history_question.question, history_answer.answer,history_answer.question_id, history_question.id\n" +
+                "FROM history_question,history_answer\n" +
+                "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
         ResultSet result = statement.executeQuery();
         LOGGER.info("=======third step - process documents from DB=======");
         StopWordReader stopWordReader = new StopWordReader();
@@ -79,8 +79,8 @@ public class IntegrationTest {
         while (result.next()) {
             String originText = result.getString("question");
             String fact = result.getString("answer");
-            int questionId = result.getInt("math_question.id");
-            int answerId = result.getInt("math_answer.question_id");
+            int questionId = result.getInt("history_question.id");
+            int answerId = result.getInt("history_answer.question_id");
             assertEquals("id вопроса должен совпадать с полем question_id", answerId, questionId);
             String[] words = tokenizer.tokenize(originText);
             List<String> filteredTokens = filter.filter(words);
@@ -102,7 +102,7 @@ public class IntegrationTest {
 
 //        BiMap<Integer, PrototypeDocument> fromDBToLSA = HashBiMap.create();
         Map<Integer, PrototypeDocument> fromDBToLSA = new HashMap<>();
-        LatentSemanticAnalysis analyzer = new LatentSemanticAnalysis(true, 300, new LogEntropyTransform(),
+        LatentSemanticAnalysis analyzer = new LatentSemanticAnalysis(true, 50, new LogEntropyTransform(),
                 SVD.getFastestAvailableFactorization(),
                 false, new StringBasisMapping());
         Iterator<Document> i = documents.iterator();
@@ -129,10 +129,7 @@ public class IntegrationTest {
         double sim = Similarity.getSimilarity(Similarity.SimType.KL_DIVERGENCE, vector1, vector2);
         LOGGER.info("sim {}", sim);
         DocumentVectorBuilder vectorBuilder = new DocumentVectorBuilder(analyzer);
-//        String toCheck = "Наука, изучающя не только законы и закономерности общественного развития в целом, " +
-//                "но и конкретные процессы становления, развития и преобразования различных стран и народов во всем их многообразии " +
-//                "и неповторимости:";
-        String toCheck = "Куликовская битва";
+        String toCheck = "Екатерина Великая";
         String[] words = tokenizer.tokenize(toCheck);
         List<String> filteredTokens = filter.filter(words);
         List<String> stemmedTokens = new ArrayList<>(filteredTokens.size());
@@ -150,13 +147,13 @@ public class IntegrationTest {
         String filteredText = QuestionNormalizer.concatWithSpace(stemmedTokens);
         Document document = new PrototypeDocument(filteredText, 0, stemmedTokens, PrototypeDocument.QUESTION, toCheck);
 
-        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(300));
+        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(50));
         TreeMap<Double, PrototypeDocument> score2Document = new TreeMap<>();
         LOGGER.info("fromDb2LSA size {}", fromDBToLSA.size());
         for (Map.Entry<Integer, PrototypeDocument> entry : fromDBToLSA.entrySet()) {
             int index = entry.getKey();
             DoubleVector vector = analyzer.getDocumentVector(index);
-            double similarity = Similarity.getSimilarity(Similarity.SimType.AVERAGE_COMMON_FEATURE_RANK, vector, stringVector);
+            double similarity = Similarity.getSimilarity(Similarity.SimType.COSINE, vector, stringVector);
             PrototypeDocument doc = entry.getValue();
             doc.setScore(similarity);
             score2Document.put(similarity, doc);
@@ -173,9 +170,9 @@ public class IntegrationTest {
 
     private String getDocumentById(int docId) throws SQLException {
         docId = 12333;
-        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_question.id\n" +
-                "FROM math_question,math_answer\n" +
-                "WHERE math_question.id =?");
+        PreparedStatement statement = connection.prepareStatement("SELECT history_question.question, history_question.id\n" +
+                "FROM history_question,history_answer\n" +
+                "WHERE history_question.id =?");
         statement.setInt(1, docId);
         ResultSet result = statement.executeQuery();
         String originText = result.getString("question");
