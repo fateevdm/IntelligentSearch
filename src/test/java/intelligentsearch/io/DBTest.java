@@ -6,7 +6,7 @@ import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer;
 import com.myuniver.intelligentsearch.util.db.DBConfigs;
-import com.myuniver.intelligentsearch.util.io.StopWordReader;
+import com.myuniver.intelligentsearch.util.io.FileReader;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -44,8 +44,8 @@ public class DBTest {
                 "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
         ResultSet result = statement.executeQuery();
         Multiset<String> tokens = TreeMultiset.create();
-        StopWordReader stopWordReader = new StopWordReader();
-        Set<String> stopWords = stopWordReader.getData();
+        FileReader fileReader = new FileReader();
+        Set<String> stopWords = fileReader.open();
         Filter filter = new TokenFilter(stopWords);
         Tokenizer tokenizer = new SimpleTokenizer();
         while (result.next()) {

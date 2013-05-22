@@ -1,6 +1,6 @@
 package intelligentsearch.io;
 
-import com.myuniver.intelligentsearch.util.io.StopWordReader;
+import com.myuniver.intelligentsearch.util.io.FileReader;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +21,8 @@ public class StopWordReaderTest {
 
     @Test
     public void stopWordTest() throws FileNotFoundException {
-        StopWordReader stopWordReader = new StopWordReader();
-        Set<String> stopWords = stopWordReader.getData();
+        FileReader fileReader = new FileReader();
+        Set<String> stopWords = fileReader.open();
         assertNotNull("collection should not be null", stopWords);
         assertFalse("list stop words should not be empty", stopWords.isEmpty());
         log.info("before");
