@@ -7,7 +7,7 @@ package com.myuniver.intelligentsearch.util.db;
  * email: wearing.fateev@gmail.com
  */
 public class Row {
-    private final String originText;
+    private final String text;
     private final String fact;
     private final int questionId;
     private final int answerId;
@@ -15,15 +15,15 @@ public class Row {
     public static final Row BAD_OBJECT = Builder.start().setOriginText("error in time constructing").build();
 
     private Row(Builder builder) {
-        originText = builder.originText;
+        text = builder.originText;
         answerId = builder.answerId;
         questionId = builder.questionId;
         fact = builder.fact;
     }
 
 
-    public String getOriginText() {
-        return originText;
+    public String getText() {
+        return text;
     }
 
     public String getFact() {

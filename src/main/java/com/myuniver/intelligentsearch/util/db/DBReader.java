@@ -19,24 +19,23 @@ import static com.myuniver.intelligentsearch.util.db.Row.Builder;
  * Time: 19:10
  * email: wearing.fateev@gmail.com
  */
-public class DBReader implements ResourceReader {
+public class DBReader implements ResourceReader<Row> {
 
-    private ResultSet set;
     private static final Logger log = LoggerFactory.getLogger(DBReader.class);
+    private ResultSet set;
 
     public Iterator<Row> iterator() {
         return new DBIterator();
     }
 
     @Override
-    public DBReader open() {
+    public void open() {
         try {
             Connection con = DBConfigs.getConnection();
             set = prepareDocuments(con);
         } catch (ClassNotFoundException | SQLException e) {
             throw Throwables.propagate(e.getCause());
         }
-        return this;
     }
 
     private ResultSet prepareDocuments(Connection con) throws SQLException {

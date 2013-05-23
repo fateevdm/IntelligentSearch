@@ -10,7 +10,7 @@ import java.util.Set;
  * Time: 19:29
  * email: wearing.fateev@gmail.com
  */
-public class TokenFilter implements Filter {
+public class TokenFilter implements Filter<String> {
     private Set<String> excluded;
 
     public TokenFilter(Set<String> excluded) {
@@ -18,7 +18,7 @@ public class TokenFilter implements Filter {
     }
 
     @Override
-    public List<String> filter(String[] tokens) {
+    public List<String> filter(List<String> tokens) {
         List<String> accepted = new ArrayList<>();
         for (String token : tokens) {
             token = token.toLowerCase();
@@ -28,6 +28,7 @@ public class TokenFilter implements Filter {
         }
         return accepted;
     }
+
 
     protected boolean accept(String token) {
         return !(excluded.contains(token));

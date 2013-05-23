@@ -22,10 +22,10 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `math_question`
+-- Структура таблицы `history_fatherland_question`
 --
 
-CREATE TABLE IF NOT EXISTS `math_question` (
+CREATE TABLE IF NOT EXISTS `history_fatherland_question` (
   `id`                INT(10)      NOT NULL AUTO_INCREMENT,
   `section_id`        INT(10)      NOT NULL DEFAULT '0',
   `subsection_id`     INT(10)      NOT NULL DEFAULT '0',
@@ -58,10 +58,10 @@ CREATE TABLE IF NOT EXISTS `math_question` (
   AUTO_INCREMENT =146066;
 
 --
--- Дамп данных таблицы `math_question`
+-- Дамп данных таблицы `history_fatherland_question`
 --
 
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (19091, 40, 194, 682, 682, 2, 'Тоталитарный режим это:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-11-02 01:30:30', '95.27.63.179', '2010-11-02 01:30:30', 0, 4, 0),
 (19090, 40, 194, 682, 682, 2, 'Причиной возобновления политических репрессий со стороны сталинского руководства в послевоенные годы являлось:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-11-02 01:30:29', '95.27.63.179', '2010-11-02 01:30:29', 0, 1, 0),
 (19089, 40, 194, 682, 682, 2, 'Последствием Второй Мировой Войны было:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-11-02 01:30:29', '95.27.63.179', '2010-11-02 01:30:29', 0, 7, 0),
@@ -256,7 +256,7 @@ INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_
 (18900, 40, 194, 663, 663, 2, 'Согласно норманнской теории, в образовании Киевской Руси главную роль сыграли:', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2010-11-02 01:30:25', '95.27.63.179', '2010-11-02 01:30:25', 0, 55, 0),
 (18899, 40, 194, 663, 663, 2, 'Новгород и Киев объединил князь:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-11-02 01:30:25', '95.27.63.179', '2010-11-02 01:30:25', 0, 42, 1),
 (18898, 40, 194, 663, 663, 2, 'Формирование Древнерусского государства относится к:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-11-02 01:30:25', '95.27.63.179', '2010-11-02 01:30:25', 0, 7, 0);
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (18897, 40, 194, 663, 663, 2, '«Уроки» и «погосты» для сбора дани с племен были учреждены:', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2010-11-02 01:30:25', '95.27.63.179', '2010-11-02 01:30:25', 0, 4, 0),
 (18896, 40, 194, 663, 663, 2, 'Крещение Руси состоялось в:', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2010-11-02 01:30:25', '95.27.63.179', '2010-11-02 01:30:25', 0, 63, 0),
 (18895, 40, 194, 663, 663, 2, 'Свод законов Древней Руси назывался:', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2010-11-02 01:30:25', '95.27.63.179', '2010-11-02 01:30:25', 0, 24, 0),
@@ -449,7 +449,7 @@ INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_
 (44155, 41, 292, 4730, 1219, 2, 'Одной из причин городских восстаний ХУП века было:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-12-02 13:06:31', '217.118.66.101', '2010-12-02 13:06:31', 0, 3, 0),
 (44156, 41, 292, 4730, 1219, 2, 'Одной из причин неудачной деятельности Уложенной комиссии 1767-1768 гг. является:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-12-02 13:06:31', '217.118.66.101', '2010-12-02 13:06:31', 0, 2, 0),
 (44157, 41, 292, 4730, 1219, 2, 'Одной из функций приказа Тайных дел было:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-12-02 13:06:31', '217.118.66.101', '2010-12-02 13:06:31', 0, 2, 0);
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (44158, 41, 292, 4730, 1219, 2, 'Он был сторонником единения русских земель, он благословил Дмитрия Донского, он был канонизирован еще при жизни людей, знавших его:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-12-02 13:06:31', '217.118.66.101', '2010-12-02 13:06:31', 0, 2, 0),
 (44159, 41, 292, 4730, 1219, 2, 'Операция по захвату Москвы гитлеровцами получила название:', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2010-12-02 13:06:31', '217.118.66.101', '2010-12-02 13:06:31', 0, 3, 0),
 (44160, 41, 292, 4730, 1219, 2, 'Опричнина - это:', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2010-12-02 13:06:31', '217.118.66.101', '2010-12-02 13:06:31', 0, 13, 0),
@@ -637,7 +637,7 @@ INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_
 (79364, 44, 445, 6311, 1978, 2, 'В начале 60-х гг. XVIIIв. была выработана новая внешнеполитическая доктрина России вследствие', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:11', '89.178.54.239', '2011-01-24 00:47:11', 0, 4, 0),
 (79365, 44, 445, 6311, 1978, 2, 'В начале 60-х гг. XVIIIв. обострился польский вопрос. В итоге', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:11', '89.178.54.239', '2011-01-24 00:47:11', 0, 5, 0),
 (79366, 44, 445, 6311, 1978, 2, 'В начале XVI в. одним из органов управления в Московской Руси был Дворец, ведавший', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:11', '89.178.54.239', '2011-01-24 00:47:11', 0, 15, 0);
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (79367, 44, 445, 6311, 1978, 2, 'В начале XVI в. одним из органов управления в Московской Руси была Боярская дума, которая', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:11', '89.178.54.239', '2011-01-24 00:47:11', 0, 13, 0),
 (79368, 44, 445, 6311, 1978, 2, 'В начале XVI в. одним из органов управления в Московской Руси была Боярская дума, которая', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:11', '89.178.54.239', '2011-01-24 00:47:11', 0, 2, 0),
 (79369, 44, 445, 6311, 1978, 2, 'В начале XVI в. одним из органов управления в Московской Руси была Казна, ведавшая', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:11', '89.178.54.239', '2011-01-24 00:47:11', 0, 2, 0),
@@ -814,7 +814,7 @@ INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_
 (79540, 44, 445, 6320, 1982, 2, 'К характерным чертам политического развития СССР в 1964-1985 гг. относится', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:12', '89.178.54.239', '2011-01-24 00:47:12', 0, 2, 0),
 (79541, 44, 445, 6320, 1982, 2, 'К числу основных положений судебной контрреформы конца XIXв. относятся', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:12', '89.178.54.239', '2011-01-24 00:47:12', 0, 1, 0),
 (79542, 44, 445, 6320, 1982, 2, 'К числу основных положений судебной контрреформы конца XIXв. относятся', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:12', '89.178.54.239', '2011-01-24 00:47:12', 0, 3, 0);
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (79543, 44, 445, 6320, 1982, 2, 'К числу основных положений судебной контрреформы конца XIXв. относятся', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:12', '89.178.54.239', '2011-01-24 00:47:12', 0, 1, 0),
 (79544, 44, 445, 6320, 1982, 2, 'К числу основных положений судебной реформы 1864 г. относятся', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:12', '89.178.54.239', '2011-01-24 00:47:12', 0, 10, 0),
 (79545, 44, 445, 6320, 1982, 2, 'К числу основных положений судебной реформы 1864г. относятся', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:12', '89.178.54.239', '2011-01-24 00:47:12', 0, 6, 0),
@@ -999,7 +999,7 @@ INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_
 (79724, 44, 445, 6329, 1985, 2, 'Промышленный переворот начался в России', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:13', '89.178.54.239', '2011-01-24 00:47:13', 0, 2, 0),
 (79725, 44, 445, 6329, 1986, 2, 'Просветительские взгляды А.Н. Радищева нашли выражение', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:13', '89.178.54.239', '2011-01-24 00:47:13', 0, 2, 0),
 (79726, 44, 445, 6329, 1986, 2, 'Просветительские взгляды М.М. Щербатова нашли выражение', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:13', '89.178.54.239', '2011-01-24 00:47:13', 0, 2, 0);
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (79727, 44, 445, 6329, 1986, 2, 'Просветительские взгляды Н.И. Новикова нашли выражение', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2011-01-24 00:47:13', '89.178.54.239', '2011-01-24 00:47:13', 0, 2, 0),
 (79728, 44, 445, 6329, 1986, 2, 'Рабочие - двадцатипятитысячники были направлены в создаваемые колхозы в целях', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:13', '89.178.54.239', '2011-01-24 00:47:13', 0, 3, 0),
 (79729, 44, 445, 6329, 1986, 2, 'Разработанный в 1920г. план ГОЭЛРО предусматривал первоочередное развитие', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-01-24 00:47:13', '89.178.54.239', '2011-01-24 00:47:13', 0, 2, 0),
@@ -1189,7 +1189,7 @@ INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_
 (115948, 50, 759, 7992, 7987, 4, 'Какое влияние оказали Александровские реформы на состояние российского общества?', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-08-30 14:55:22', '95.27.163.30', '2011-08-30 14:55:22', 0, 3, 0),
 (115949, 50, 759, 7992, 7987, 2, 'Представителем какого тайного революционного объединения был Каракозов, совершивший первое покушение на Александра II в апреле 1866 г.?', '', '', '', '', 1, 0, 0, 1, '', '', 1, '2011-08-30 14:55:22', '95.27.163.30', '2011-08-30 14:55:22', 0, 3, 0),
 (115950, 50, 759, 7992, 7987, 2, 'Какова была главная цель Александра III во время его царствования?', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-08-30 14:55:22', '95.27.163.30', '2011-08-30 14:55:22', 0, 5, 0);
-INSERT INTO `math_question` (`math_question`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
+INSERT INTO `history_fatherland_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `xpl`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`, `mobicount`, `dailycount`) VALUES
 (115951, 50, 759, 7992, 7987, 4, 'Какую роль сыграл во внутренней политике заместитель министра внутренних дел В.К. Плеве?', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-08-30 14:55:22', '95.27.163.30', '2011-08-30 14:55:22', 0, 5, 1),
 (115952, 50, 759, 7992, 7987, 4, 'В чем особенность внешнеэкономической политики при царствовании Александра III?', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-08-30 14:55:22', '95.27.163.30', '2011-08-30 14:55:22', 0, 0, 0),
 (115953, 50, 759, 7992, 7987, 4, 'Какие особенности выделяют в формировании монополистического капитализма в России начала XX века?', '', '', '', '', 1, 0, 0, 0, '', '', 1, '2011-08-30 14:55:22', '95.27.163.30', '2011-08-30 14:55:22', 0, 3, 1),

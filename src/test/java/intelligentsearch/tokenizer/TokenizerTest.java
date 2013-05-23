@@ -1,7 +1,7 @@
 package intelligentsearch.tokenizer;
 
 import com.myuniver.intelligentsearch.questionanalyzer.QuestionNormalizer;
-import opennlp.tools.tokenize.SimpleTokenizer;
+import com.myuniver.intelligentsearch.tokanizer.SimpleTokenizer;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  * Time: 0:12
  */
 public class TokenizerTest {
-    Tokenizer tokenizer = SimpleTokenizer.INSTANCE;
+    Tokenizer tokenizer = new SimpleTokenizer();
 
     @Test
     public void testToken() throws IOException {
@@ -29,7 +29,6 @@ public class TokenizerTest {
 
     @Test
     public void testToken_2() {
-        tokenizer = new com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer();
         String[] tokens = tokenizer.tokenize("А.Д.Михайлов)");
         assertArrayEquals(tokens, new String[]{"А", ".", "Д", ".", "Михайлов", ")"});
     }

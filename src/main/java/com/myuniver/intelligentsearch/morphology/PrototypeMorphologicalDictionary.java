@@ -36,7 +36,7 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
     @Override
     public V get(String key) {
         if (key == null || key.length() == 0) {
-            throw new RuntimeException("illegal key");
+            throw new IllegalArgumentException("illegal key");
         }
         Node x = get(root, key, 0);
         if (x == null) return null;
@@ -45,7 +45,7 @@ public class PrototypeMorphologicalDictionary<V> implements Dictionary<String, V
 
     // return subtrie corresponding to given key
     private Node get(Node x, String key, int d) {
-        if (key == null || key.length() == 0) throw new RuntimeException("illegal key");
+        if (key == null || key.length() == 0) throw new IllegalArgumentException("illegal key");
         if (x == null) return null;
         char c = key.charAt(d);
         if (c < x.c) return get(x.left, key, d);

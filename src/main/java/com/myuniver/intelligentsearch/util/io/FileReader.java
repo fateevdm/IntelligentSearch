@@ -1,6 +1,7 @@
 package com.myuniver.intelligentsearch.util.io;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Throwables;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -12,7 +13,7 @@ import java.util.Scanner;
  * Date: 09.04.13
  * Time: 23:31
  */
-public class FileReader implements ResourceReader {
+public class FileReader implements ResourceReader<String> {
     private final String file;
     private Scanner scanner;
 
@@ -25,10 +26,12 @@ public class FileReader implements ResourceReader {
     }
 
     @Override
-    @SuppressWarnings("uncheked")
-    public FileReader open() throws IOException {
-        scanner = new Scanner(Paths.get(file), Charsets.UTF_8.name());
-        return this;
+    public void open() {
+        try {
+            scanner = new Scanner(Paths.get(file), Charsets.UTF_8.name());
+        } catch (IOException e) {
+            Throwables.propagate(e.getCause());
+        }
     }
 
     @Override

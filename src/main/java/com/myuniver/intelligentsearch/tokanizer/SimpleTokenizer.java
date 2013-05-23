@@ -1,7 +1,8 @@
-package com.myuniver.intelligentsearch.tokenizer;
+package com.myuniver.intelligentsearch.tokanizer;
 
 import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.util.Span;
+
 
 /**
  * User: Dmitry Fateev

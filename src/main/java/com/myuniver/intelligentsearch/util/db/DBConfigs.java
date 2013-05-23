@@ -19,7 +19,6 @@ public class DBConfigs {
     public static final String DB_USER = "db.user";
     public static final String DB_PASS = "db.pass";
 
-
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Config config = Config.getConfig();
 

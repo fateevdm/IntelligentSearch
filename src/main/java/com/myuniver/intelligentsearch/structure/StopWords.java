@@ -14,8 +14,8 @@ import java.util.Set;
  */
 public class StopWords {
 
-    private final static String STOP_WORD_FILE = "dictionary.stopwords";
-    ResourceReader reader;
+    public final static String STOP_WORD_FILE = "dictionary.stopwords";
+    ResourceReader<String> reader;
     private Set<String> stopWords = new HashSet<>();
 
     public StopWords() {
@@ -26,10 +26,11 @@ public class StopWords {
         reader = FileReader.createByFile(file);
     }
 
-    Set<String> getStopWords() {
+    public Set<String> getStopWords() {
         reader.open();
-        for (String line : reader.iterator()) {
-
+        for (String line : reader) {
+            stopWords.add(line);
         }
+        return stopWords;
     }
 }

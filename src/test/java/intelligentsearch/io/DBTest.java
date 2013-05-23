@@ -4,9 +4,9 @@ import com.google.common.collect.Multiset;
 import com.google.common.collect.TreeMultiset;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
-import com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer;
+import com.myuniver.intelligentsearch.structure.StopWords;
+import com.myuniver.intelligentsearch.tokanizer.SimpleTokenizer;
 import com.myuniver.intelligentsearch.util.db.DBConfigs;
-import com.myuniver.intelligentsearch.util.io.FileReader;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -20,10 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -39,19 +36,19 @@ public class DBTest {
     @Test
     public void dbTest() throws SQLException, IOException, ClassNotFoundException {
         Connection connection = DBConfigs.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer,math_answer.id, math_question.id\n" +
-                "FROM math_question,math_answer\n" +
-                "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
+        PreparedStatement statement = connection.prepareStatement("SELECT history_question.question, history_answer.answer,history_answer.id, history_question.id\n" +
+                "FROM history_question,history_answer\n" +
+                "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
         ResultSet result = statement.executeQuery();
         Multiset<String> tokens = TreeMultiset.create();
-        FileReader fileReader = new FileReader();
-        Set<String> stopWords = fileReader.open();
+        StopWords stopWordsData = new StopWords();
+        Set<String> stopWords = stopWordsData.getStopWords();
         Filter filter = new TokenFilter(stopWords);
         Tokenizer tokenizer = new SimpleTokenizer();
         while (result.next()) {
-            String text = result.getString("math_question.question") + " " + result.getString("answer");
+            String text = result.getString("history_question.question") + " " + result.getString("answer");
             String[] words = tokenizer.tokenize(text);
-            List<String> filteredTokens = filter.filter(words);
+            List<String> filteredTokens = filter.filter(Arrays.asList(words));
             tokens.addAll(filteredTokens);
 
         }
@@ -76,15 +73,15 @@ public class DBTest {
     @Test
     public void dbTest_2() throws SQLException, ClassNotFoundException {
         Connection connection = DBConfigs.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT math_question.question, math_answer.answer,math_answer.id, math_question.id\n" +
-                "FROM math_question,math_answer\n" +
-                "WHERE math_answer.question_id = math_question.id AND math_answer.correct =1;");
+        PreparedStatement statement = connection.prepareStatement("SELECT history_question.question, history_answer.answer,history_answer.id, history_question.id\n" +
+                "FROM history_question,history_answer\n" +
+                "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
         ResultSet result = statement.executeQuery();
         while (result.next()) {
             String text = result.getString("question");
             String fact = result.getString("answer");
-            int questionId = result.getInt("math_question.id");
-            int answerId = result.getInt("math_answer.id");
+            int questionId = result.getInt("history_question.id");
+            int answerId = result.getInt("history_answer.id");
             int row = result.getRow();
             log.info("\nrow {};\nquestion.id {} = question {};\nanswer.id {} = answer {};", row, questionId, text, answerId, fact);
 

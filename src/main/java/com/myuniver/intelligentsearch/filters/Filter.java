@@ -8,7 +8,7 @@ import java.util.List;
  * Time: 19:06
  * email: wearing.fateev@gmail.com
  */
-public interface Filter {
+public interface Filter<T> {
 
-    List<String> filter(String[] tokens);
+    List<T> filter(List<T> tokens);
 }

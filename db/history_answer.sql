@@ -22,10 +22,10 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `math_answer`
+-- Структура таблицы `history_answer`
 --
 
-CREATE TABLE IF NOT EXISTS `math_answer` (
+CREATE TABLE IF NOT EXISTS `history_answer` (
   `id`              INT(10)      NOT NULL AUTO_INCREMENT,
   `question_id`     INT(10)      NOT NULL DEFAULT '0',
   `calculated`      INT(1)       NOT NULL DEFAULT '0',
@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS `math_answer` (
   AUTO_INCREMENT = 568709;
 
 --
--- Дамп данных таблицы `math_answer`
+-- Дамп данных таблицы `history_answer`
 --
 
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (47515, 12009, 0, 'обществоведение', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
 (47516, 12009, 0, 'философия', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
 (47517, 12009, 0, 'история', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
@@ -344,7 +344,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (47797, 12079, 0, 'поддержка Москвы католическим Римом', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:17', '95.25.101.24', '2010-10-18 00:34:17', 0),
 (47798, 12079, 0, 'близорукость ордынских ханов, не рассмотревших своего главного противника', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:17', '95.25.101.24', '2010-10-18 00:34:17', 0),
 (47799, 12080, 0, 'Александр Невский', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:17', '95.25.101.24', '2010-10-18 00:34:17', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (47800, 12080, 0, 'Иван Калита', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:17', '95.25.101.24', '2010-10-18 00:34:17', 0),
 (47801, 12080, 0, 'Дмитрий Донской', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:17', '95.25.101.24', '2010-10-18 00:34:17', 0),
 (47802, 12080, 0, 'Иван III', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:17', '95.25.101.24', '2010-10-18 00:34:17', 0),
@@ -624,7 +624,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (48076, 12149, 0, 'от феодального труда к капиталистическому', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (48077, 12149, 0, 'от ручного труда к машинному', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (48078, 12149, 0, 'от механизированного труда к автоматизированному', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (48079, 12150, 0, 'отмена крепостного права в Прибалтике', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (48080, 12150, 0, 'освобождение крепостных крестьян', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (48081, 12150, 0, 'увеличение наделов земли государственным крестьянам', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
@@ -884,7 +884,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (48335, 12214, 0, 'Николай II', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0),
 (48336, 12214, 0, 'П.Столыпин', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0),
 (48337, 12214, 0, 'С.Витте', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (48338, 12214, 0, 'А.Булыгин', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0),
 (48339, 12215, 0, 'совещательной', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0),
 (48340, 12215, 0, 'законодательной', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0),
@@ -1128,7 +1128,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (48578, 12274, 0, 'его члены-большевики были заняты работой в СНК', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:20', '95.25.101.24', '2010-10-18 00:34:20', 0),
 (48579, 12275, 0, 'руководители Учредительного собрания', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:20', '95.25.101.24', '2010-10-18 00:34:20', 0),
 (48580, 12275, 0, 'члены Советской делегации на Версальской конференции', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:20', '95.25.101.24', '2010-10-18 00:34:20', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (48581, 12275, 0, 'организаторы Советского государства', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:20', '95.25.101.24', '2010-10-18 00:34:20', 0),
 (48582, 12275, 0, 'сторонники теории «перманентной революции»', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:20', '95.25.101.24', '2010-10-18 00:34:20', 0),
 (48583, 12276, 0, 'известные советские писатели', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:20', '95.25.101.24', '2010-10-18 00:34:20', 0),
@@ -1381,7 +1381,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (48830, 12337, 0, 'рекрутчина', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (48831, 12338, 0, 'национализация', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (48832, 12338, 0, 'индустриализация', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (48833, 12338, 0, 'коллективизация', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (48834, 12338, 0, 'фальсификация', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (48835, 12339, 0, 'политическим плюрализмом', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
@@ -1620,7 +1620,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (49068, 12397, 0, 'ученые-конструкторы', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:22', '95.25.101.24', '2010-10-18 00:34:22', 0),
 (49069, 12397, 0, 'члены Совнаркома', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:22', '95.25.101.24', '2010-10-18 00:34:22', 0),
 (49070, 12397, 0, 'выдающиеся советские полководцы', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:22', '95.25.101.24', '2010-10-18 00:34:22', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (49071, 12398, 0, 'в мае 1943 г.', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:22', '95.25.101.24', '2010-10-18 00:34:22', 0),
 (49072, 12398, 0, 'в июне 1944 г.', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:22', '95.25.101.24', '2010-10-18 00:34:22', 0),
 (49073, 12398, 0, 'в декабре 1944 г.', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:22', '95.25.101.24', '2010-10-18 00:34:22', 0),
@@ -1880,7 +1880,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (49327, 12461, 0, 'ликвидация МТС и передача техники колхозам', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:23', '95.25.101.24', '2010-10-18 00:34:23', 0),
 (49328, 12462, 0, 'попытка демократизации политической системы', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:23', '95.25.101.24', '2010-10-18 00:34:23', 0),
 (49329, 12462, 0, 'усиление бюрократизации политической системы', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:23', '95.25.101.24', '2010-10-18 00:34:23', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (49330, 12462, 0, 'формирование тоталитарного режима', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:23', '95.25.101.24', '2010-10-18 00:34:23', 0),
 (49331, 12462, 0, 'ограничение политической роли КПСС в вооруженных силах СССР', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:23', '95.25.101.24', '2010-10-18 00:34:23', 0),
 (49332, 12463, 0, '1946 г. А.А. Жданов, А.А. Ахматова, М.М. Зощенко', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:23', '95.25.101.24', '2010-10-18 00:34:23', 0),
@@ -2148,7 +2148,7 @@ INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_
 (49594, 12528, 0, '1993 г.', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (49595, 12528, 0, '1996 г.', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (49596, 12529, 0, 'избрания Государственной Думой', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0);
-INSERT INTO `math_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_answer` (`id`, `question_id`, `calculated`, `answer`, `answer_text`, `correct`, `visible`, `basic`, `qlevel`, `description`, `image_link`, `smark`, `completeness`, `price`, `rudeness`, `discount`, `quick_fix`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (49597, 12529, 0, 'назначения Федеральным Собранием', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (49598, 12529, 0, 'всенародных выборов', '', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (49599, 12529, 0, 'назначения Конституционным судом', '', 0, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 0, 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),

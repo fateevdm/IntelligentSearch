@@ -25,7 +25,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 -- Структура таблицы `math_question`
 --
 
-CREATE TABLE IF NOT EXISTS `math_question` (
+CREATE TABLE IF NOT EXISTS `history_question` (
   `id`                INT(10)      NOT NULL AUTO_INCREMENT,
   `section_id`        INT(10)      NOT NULL DEFAULT '0',
   `subsection_id`     INT(10)      NOT NULL DEFAULT '0',
@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS `math_question` (
   AUTO_INCREMENT =145158;
 
 --
--- Дамп данных таблицы `math_question`
+-- Дамп данных таблицы `history_question`
 --
 
-INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (12009, 38, 180, 3284, 422, 2, 'Наука, изучающая не только законы и закономерности общественного развития в целом, но и конкретные процессы становления, развития и преобразования различных стран и народов во всем их многообразии и неповторимости:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
 (12010, 38, 180, 3284, 422, 2, 'Конкретные способы изучения исторических процессов это:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
 (12011, 38, 180, 3284, 422, 2, 'Суть познавательной функции истории заключается в:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:15', '95.25.101.24', '2010-10-18 00:34:15', 0),
@@ -241,7 +241,7 @@ INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`
 (12188, 38, 180, 3292, 427, 2, 'Д.И.Менделеев, А.М.Бутлеров, И.П.Павлов это:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (12189, 38, 180, 3293, 427, 2, 'Л.Н.Толстой, Ф.М.Достоевский, А.П.Чехов это:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (12190, 38, 180, 3293, 427, 2, 'Знаменитая фраза: лучше отменить крепостное право сверху, чем ждать его отмены снизу в самых разных формах принадлежит:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0);
-INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (12191, 38, 180, 3293, 427, 2, 'Объединяло сторонников отмены крепостного права то, что они надеялись на:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (12192, 38, 180, 3293, 427, 2, 'Разъединяло сторонников отмены крепостного права (укажите неверный ответ):', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:18', '95.25.101.24', '2010-10-18 00:34:18', 0),
 (12193, 38, 180, 3293, 427, 2, 'При отмене крепостного права важной была проблема общины, о судьбе которой НЕ высказывалось одно из следующих предложений:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:19', '95.25.101.24', '2010-10-18 00:34:19', 0),
@@ -429,7 +429,7 @@ INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`
 (12375, 38, 180, 3302, 432, 2, 'Основными взглядами «Правового уклона» являются (укажите неверный ответ):', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (12376, 38, 180, 3302, 433, 2, 'Договор о ненападении между Германией и СССР был подписан (день, месяц, год):', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (12377, 38, 180, 3302, 433, 2, 'Вторая мировая война началась в (году):', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0);
-INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (12378, 38, 180, 3302, 433, 2, 'Договор о ненападении между Германией и СССР получил название:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (12379, 38, 180, 3302, 433, 2, 'После завоевания СССР гитлеровское руководство планировало:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
 (12380, 38, 180, 3302, 433, 2, 'Договор о ненападении с Германией позволил СССР:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:21', '95.25.101.24', '2010-10-18 00:34:21', 0),
@@ -612,7 +612,7 @@ INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`
 (12557, 38, 180, 3311, 436, 2, 'Следствием октябрьских событий 1993 г. был(о):', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (12558, 38, 180, 3311, 436, 2, 'Первый в мире атомный ледокол, спущенный на воду в СССР, называется:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (12559, 38, 180, 3311, 436, 2, 'Первые крупные межнациональные столкновения на территории СССР во второй половине 80-х гг. произошли в:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0);
-INSERT INTO `math_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
+INSERT INTO `history_question` (`id`, `section_id`, `subsection_id`, `q_section_id`, `qsid`, `question_type`, `question`, `description`, `related_text`, `related_link`, `related_link_text`, `visible`, `price`, `difficulty`, `image_link`, `image_description`, `user_added`, `date_added`, `ipaddress_added`, `added`, `confirmed`) VALUES
 (12560, 38, 180, 3311, 436, 2, 'Укажите главную цель экономической политики, проводившейся в начале 90-х годов ХХ века правительством Е.Т. Гайдара:', '', '', '', '', 1, 0, 0, '', '', 1, '2010-10-18 00:34:24', '95.25.101.24', '2010-10-18 00:34:24', 0),
 (145083, 38, 180, 422, 422, 3, 'Вопрос 7', '', '', '', '', 1, 0, 0, '', '', 1, '2012-05-31 00:00:41', '37.144.107.185', '2012-05-31 00:00:41', 0),
 (145084, 38, 180, 422, 422, 3, 'Вопрос 7', '', '', '', '', 1, 0, 0, '', '', 1, '2012-05-31 00:11:23', '37.144.107.185', '2012-05-31 00:11:23', 0);

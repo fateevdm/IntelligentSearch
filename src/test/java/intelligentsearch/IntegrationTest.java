@@ -6,16 +6,18 @@ import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.questionanalyzer.QuestionNormalizer;
 import com.myuniver.intelligentsearch.stemmer.SimpleStemmer;
 import com.myuniver.intelligentsearch.stemmer.Stemmer;
-import com.myuniver.intelligentsearch.tokenizer.SimpleTokenizer;
+import com.myuniver.intelligentsearch.structure.StopWords;
+import com.myuniver.intelligentsearch.tokanizer.SimpleTokenizer;
 import com.myuniver.intelligentsearch.util.Config;
 import com.myuniver.intelligentsearch.util.Dictionary;
 import com.myuniver.intelligentsearch.util.db.DBConfigs;
+import com.myuniver.intelligentsearch.util.db.DBReader;
 import com.myuniver.intelligentsearch.util.db.PrototypeDocument;
+import com.myuniver.intelligentsearch.util.db.Row;
 import com.myuniver.intelligentsearch.util.io.DictionaryReader;
-import com.myuniver.intelligentsearch.util.io.FileReader;
+import com.myuniver.intelligentsearch.util.io.ResourceReader;
 import edu.ucla.sspace.basis.StringBasisMapping;
 import edu.ucla.sspace.common.DocumentVectorBuilder;
-import edu.ucla.sspace.common.SemanticSpaceIO;
 import edu.ucla.sspace.common.Similarity;
 import edu.ucla.sspace.lsa.LatentSemanticAnalysis;
 import edu.ucla.sspace.matrix.LogEntropyTransform;
@@ -29,15 +31,13 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * User: Dmitry Fateev
@@ -48,63 +48,42 @@ public class IntegrationTest {
     public static final Logger LOGGER = LoggerFactory.getLogger(IntegrationTest.class);
     String dictionaryPath = Config.getConfig().getProperty("dictionary.simple");
     private Connection connection;
-
+    DictionaryReader reader;
+    private Dictionary<String, Word> dictionary;
+    private Stemmer stemmer;
+    private StopWords stopWordsData;
+    private Tokenizer tokenizer;
+    private Filter filter;
 
     @Before
-    public void setUp() throws SQLException, ClassNotFoundException {
+    public void setUp() throws SQLException, ClassNotFoundException, FileNotFoundException {
+        LOGGER.info("=======first step - load data from files =======");
         connection = DBConfigs.getConnection();
+        reader = new DictionaryReader(dictionaryPath);
+        dictionary = reader.openConnection();
+        stemmer = SimpleStemmer.getStemmer();
+        stopWordsData = new StopWords();
+        tokenizer = new SimpleTokenizer();
     }
-
 
     @Test
     public void runIntegrationTest() throws IOException, SQLException {
-
-        LOGGER.info("=======first step - load data from files =======");
-        DictionaryReader reader = new DictionaryReader(dictionaryPath);
-        Dictionary<String, Word> dictionary = reader.openConnection();
-        Stemmer stemmer = SimpleStemmer.getStemmer();
+        Set<String> stopWords = stopWordsData.getStopWords();
         LOGGER.info("=======second step - load data from DB =======");
-
-        PreparedStatement statement = connection.prepareStatement("SELECT history_question.question, history_answer.answer,history_answer.question_id, history_question.id\n" +
-                "FROM history_question,history_answer\n" +
-                "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
-        ResultSet result = statement.executeQuery();
+        ResourceReader<Row> dbReader = new DBReader();
+        dbReader.open();
         LOGGER.info("=======third step - process documents from DB=======");
-        FileReader fileReader = FileReader.createDefault();
-        Set<String> stopWords = fileReader.open();
-//        Multiset<String> tokens = TreeMultiset.create();
-        Filter filter = new TokenFilter(stopWords);
-        Tokenizer tokenizer = new SimpleTokenizer();
-        List<Document> documents = new ArrayList<>();
-        while (result.next()) {
-            String originText = result.getString("question");
-            String fact = result.getString("answer");
-            int questionId = result.getInt("history_question.id");
-            int answerId = result.getInt("history_answer.question_id");
-            assertEquals("id вопроса должен совпадать с полем question_id", answerId, questionId);
-            String[] words = tokenizer.tokenize(originText);
-            List<String> filteredTokens = filter.filter(words);
-            List<String> stemmedTokens = new ArrayList<>(filteredTokens.size());
-            for (String token : filteredTokens) {
-                Word lemma = dictionary.get(token);
-                if (lemma == null) {
-                    String stemm = stemmer.stemm(token);
-                    stemmedTokens.add(stemm);
-                } else {
-                    stemmedTokens.add(lemma.getStemma());
-                }
-
-            }
-            String filteredText = QuestionNormalizer.concatWithSpace(stemmedTokens);
-            Document document = new PrototypeDocument(filteredText, questionId, stemmedTokens, fact, originText);
-            documents.add(document);
-        }
-
-//        BiMap<Integer, PrototypeDocument> fromDBToLSA = HashBiMap.create();
+        filter = new TokenFilter(stopWords);
+        List<Document> documents = processDocs(dbReader);
+        LOGGER.info("document size before: {},", documents.size());
+        List<Row> templateDoc = getTemplateDocument();
+        documents.addAll(processDocs(templateDoc));
+        LOGGER.info("document size after: {},", documents.size());
         Map<Integer, PrototypeDocument> fromDBToLSA = new HashMap<>();
-        LatentSemanticAnalysis analyzer = new LatentSemanticAnalysis(true, 50, new LogEntropyTransform(),
+        LatentSemanticAnalysis analyzer = new LatentSemanticAnalysis(true, 20, new LogEntropyTransform(),
                 SVD.getFastestAvailableFactorization(),
                 false, new StringBasisMapping());
+
         Iterator<Document> i = documents.iterator();
         int lsaIndex = 0;
         while (i.hasNext()) {
@@ -115,80 +94,87 @@ public class IntegrationTest {
         }
         analyzer.processSpace(new Properties());
         int size = analyzer.documentSpaceSize();
-        SemanticSpaceIO.save(analyzer, new File("semantic_space_text.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
-        SemanticSpaceIO.save(analyzer, new File("semantic_space_text_sparse.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
+//        SemanticSpaceIO.save(analyzer, new File("semantic_space_text.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
+//        SemanticSpaceIO.save(analyzer, new File("semantic_space_text_sparse.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
         LOGGER.info("document space size {}", size);
         int countWords = analyzer.getWords().size();
         LOGGER.info("words {}", countWords);
-        DoubleVector doubleVector = analyzer.getDocumentVector(size - 1);
-        LOGGER.info("length {};\nmagnitude {};\nvector {}", doubleVector.length(), doubleVector.magnitude(), doubleVector);
-        edu.ucla.sspace.vector.Vector vector1 = analyzer.getVector("месяц");
-        LOGGER.info("\nword vector\nlength {};\nmagnitude {};\nvector {}", vector1.length(), vector1.magnitude(), vector1);
-        edu.ucla.sspace.vector.Vector vector2 = analyzer.getVector("апрель");
-        LOGGER.info("\nword vector\nlength {};\nmagnitude {};\nvector {}", vector2.length(), vector2.magnitude(), vector2);
-        double sim = Similarity.getSimilarity(Similarity.SimType.KL_DIVERGENCE, vector1, vector2);
-        LOGGER.info("sim {}", sim);
         DocumentVectorBuilder vectorBuilder = new DocumentVectorBuilder(analyzer);
-        String toCheck = "Екатерина Великая";
+        String toCheck = "что произошло в 1941";
         String[] words = tokenizer.tokenize(toCheck);
-        List<String> filteredTokens = filter.filter(words);
-        List<String> stemmedTokens = new ArrayList<>(filteredTokens.size());
-
-        for (String token : filteredTokens) {
+        List<String> filtered = filter.filter(Arrays.asList(words));
+        List<String> stemmed = new ArrayList<>(filtered.size());
+        for (String token : filtered) {
             Word lemma = dictionary.get(token);
             if (lemma == null) {
                 String stemm = stemmer.stemm(token);
-                stemmedTokens.add(stemm);
+                stemmed.add(stemm);
             } else {
-                stemmedTokens.add(lemma.getStemma());
+                stemmed.add(lemma.getStemma());
             }
-
         }
-        String filteredText = QuestionNormalizer.concatWithSpace(stemmedTokens);
-        Document document = new PrototypeDocument(filteredText, 0, stemmedTokens, PrototypeDocument.QUESTION, toCheck);
+        String filteredText = QuestionNormalizer.concatWithSpace(stemmed);
+        Document document = new PrototypeDocument(filteredText, -1, filtered, PrototypeDocument.QUESTION, toCheck);
 
-        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(50));
-        TreeMap<Double, PrototypeDocument> score2Document = new TreeMap<>();
+        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(20));
+        LinkedList<PrototypeDocument> ranged = new LinkedList<>();
         LOGGER.info("fromDb2LSA size {}", fromDBToLSA.size());
         for (Map.Entry<Integer, PrototypeDocument> entry : fromDBToLSA.entrySet()) {
             int index = entry.getKey();
             DoubleVector vector = analyzer.getDocumentVector(index);
-            double similarity = Similarity.getSimilarity(Similarity.SimType.COSINE, vector, stringVector);
+            double similarity = Similarity.getSimilarity(Similarity.SimType.EUCLIDEAN, vector, stringVector);
             PrototypeDocument doc = entry.getValue();
             doc.setScore(similarity);
-            score2Document.put(similarity, doc);
+            ranged.add(doc);
         }
-        LOGGER.info("score2Document size {}", score2Document.size());
-        for (Map.Entry<Double, PrototypeDocument> entry : score2Document.entrySet()) {
-            LOGGER.info("entry: {}", entry);
+        Collections.sort(ranged);
+        LOGGER.info("ranged size {}", ranged.size());
+        List<PrototypeDocument> topDocs = ranged.subList(0, 10);
+        for (PrototypeDocument doc : topDocs) {
+            LOGGER.info("\nscore [{}],\n[{}]", doc.getScore(), doc);
         }
-        LOGGER.info("first elem: {}", score2Document.firstEntry());
-        LOGGER.info("last elem: {}", score2Document.lastEntry());
-
+        LOGGER.info("first elem score: {};\nelem: {}", ranged.getFirst().getScore(), ranged.getFirst());
+        LOGGER.info("last elem score: {};\nelem: {}", ranged.getLast().getScore(), ranged.getLast());
+        LOGGER.info("fact: {}", ranged.getLast().getFact());
 
     }
 
-    private String getDocumentById(int docId) throws SQLException {
-        docId = 12333;
-        PreparedStatement statement = connection.prepareStatement("SELECT history_question.question, history_question.id\n" +
-                "FROM history_question,history_answer\n" +
-                "WHERE history_question.id =?");
-        statement.setInt(1, docId);
+    private List<Document> processDocs(Iterable<Row> rows) {
+        List<Document> docs = new ArrayList<>();
+        for (Row row : rows) {
+            String[] words = tokenizer.tokenize(row.getText());
+            List<String> filtered = filter.filter(Arrays.asList(words));
+            List<String> stemmed = new ArrayList<>(filtered.size());
+            for (String token : filtered) {
+                Word lemma = dictionary.get(token);
+                String stemm;
+                if (lemma == null) {
+                    stemm = stemmer.stemm(token);
+                    stemmed.add(stemm);
+                } else {
+                    stemmed.add(lemma.getStemma());
+                }
+            }
+            String filteredText = QuestionNormalizer.concatWithSpace(stemmed);
+            Document document = new PrototypeDocument(filteredText, row.getQuestionId(), filtered, row.getFact(), row.getText());
+            docs.add(document);
+        }
+        return docs;
+    }
+
+    private List<Row> getTemplateDocument() throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("SELECT history_fatherland_question.question, history_fatherland_question.id\n" +
+                "FROM history_fatherland_question\n");
         ResultSet result = statement.executeQuery();
-        String originText = result.getString("question");
-        String fact = result.getString("answer");
-        int questionId = result.getInt("math_question.id");
-        int answerId = result.getInt("math_answer.question_id");
-        return originText;
-    }
-
-    static class Pair {
-        int idFromDB;
-        int idFromLSA;
-
-        Pair(int idFromDB, int idFromLSA) {
-            this.idFromDB = idFromDB;
-            this.idFromLSA = idFromLSA;
+        List<Row> documents = new ArrayList<>();
+        while (result.next()) {
+            String originText = result.getString("history_fatherland_question.question");
+            int questionId = result.getInt("history_fatherland_question.id");
+            Row row = Row.Builder.start().setOriginText(originText).setQuestionId(questionId).build();
+            documents.add(row);
         }
+
+        return documents;
     }
+
 }

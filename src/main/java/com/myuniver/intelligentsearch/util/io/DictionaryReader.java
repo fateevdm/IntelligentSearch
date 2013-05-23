@@ -24,7 +24,6 @@ public class DictionaryReader {
     private Dictionary<String, Word> dictionary = PrototypeSimpleDictionary.create();
     private Stemmer stemmer = SimpleStemmer.getStemmer();
     private Multiset<Word> wordsSet = HashMultiset.create();
-    private final String COMMENT = "#";
 
     public DictionaryReader(String filePath) throws FileNotFoundException {
         this(new FileInputStream(filePath));
@@ -41,7 +40,7 @@ public class DictionaryReader {
      */
     public Dictionary<String, Word> openConnection() {
         Scanner scanner = new Scanner(dataStream);
-        int index = 0;
+        String COMMENT = "#";
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             if (line.contains(COMMENT)) continue;

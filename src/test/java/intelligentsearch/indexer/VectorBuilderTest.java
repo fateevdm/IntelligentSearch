@@ -30,6 +30,6 @@ public class VectorBuilderTest {
         br = new BufferedReader(new StringReader(document2));
         Vector documentVector2 = builder.buildVector(br, new CompactSparseVector());
 
-        System.out.println(Similarity.getSimilarity(Similarity.SimType.SPEARMAN_RANK_CORRELATION, documentVector, documentVector2));
+        System.out.println(Similarity.getSimilarity(Similarity.SimType.COSINE, documentVector, documentVector2));
     }
 }
