@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `history_fatherland_question` (
   FULLTEXT KEY `question` (`question`, `description`)
 )
   ENGINE =MyISAM
-  DEFAULT CHARSET =cp1251
+  DEFAULT CHARSET = utf8history_fatherland_question
   AUTO_INCREMENT =146066;
 
 --
