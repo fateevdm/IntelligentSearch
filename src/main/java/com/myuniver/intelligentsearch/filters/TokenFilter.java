@@ -1,5 +1,7 @@
 package com.myuniver.intelligentsearch.filters;
 
+import com.google.common.base.CharMatcher;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +33,6 @@ public class TokenFilter implements Filter<String> {
 
 
     protected boolean accept(String token) {
-        return !(excluded.contains(token));
+        return !((excluded.contains(token)) || CharMatcher.DIGIT.matchesAllOf(token));
     }
 }
