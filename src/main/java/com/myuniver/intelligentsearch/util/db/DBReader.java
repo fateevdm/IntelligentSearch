@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Iterator;
 
 import static com.myuniver.intelligentsearch.util.db.Row.Builder;
@@ -19,13 +20,33 @@ import static com.myuniver.intelligentsearch.util.db.Row.Builder;
  * Time: 19:10
  * email: wearing.fateev@gmail.com
  */
-public class DBReader implements ResourceReader<Row> {
+public class DBReader<T> implements ResourceReader<Row> {
 
     private static final Logger log = LoggerFactory.getLogger(DBReader.class);
     private ResultSet set;
 
     public Iterator<Row> iterator() {
         return new DBIterator();
+    }
+
+    public Collection<T> getAll(){
+        return null;
+    }
+
+    public T getById(int id){
+        return null;
+    }
+
+    public boolean update(T item){
+        return true;
+    }
+
+    public int insert(T item){
+        return -1;
+    }
+
+    public Collection<Integer> insertAll(Collection<T> items){
+        return null;
     }
 
     @Override
