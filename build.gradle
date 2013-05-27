@@ -21,7 +21,6 @@ configurations {
 }
 
 dependencies {
-    groovy 'org.codehaus.groovy:groovy-all:2.1.1'
     compile 'org.slf4j:slf4j-api:1.7.5',
             'org.languagetool:languagetool-core:2.1',
             'org.languagetool:language-ru:2.1',
@@ -40,47 +39,23 @@ dependencies {
             'org.apache.opennlp:opennlp-maxent:3.0.3',
             'org.apache.opennlp:opennlp-uima:1.5.3',
             'org.apache.lucene:lucene-core:4.3.0',
+            'org.maltparser:maltparser:1.7.2',
             'edu.ucla.sspace:sspace:2.0.3'
+    groovy 'org.codehaus.groovy:groovy-all:2.1.1'
     testCompile 'junit:junit:4.+',
             'org.mockito:mockito-all:1.9.0'
 }
 
-sourceSets{
-    prototype
-    main{
-        compileClasspath = compileClasspath + files(prototype.output.classesDir)
+buildscript {
+    repositories {
+        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+            name = 'Lucene Russian Morphology Repository for Maven'
+            addArtifactPattern 'http://russianmorphology.googlecode.com/svn/repo/releases/'
+        }
     }
-}
 
-task sourceSetJavaProperties << {
-    sourceSets {
-        main {
-            println "==========main=============="
-            println "java.srcDirs = ${java.srcDirs}"
-            println "resources.srcDirs = ${resources.srcDirs}"
-            println "java.files = ${java.files.name}"
-            println "allJava.files = ${allJava.files.name}"
-            println "resources.files = ${resources.files.name}"
-            println "allSource.files = ${allSource.files.name}"
-            println "output.classesDir = ${output.classesDir}"
-            println "output.resourcesDir = ${output.resourcesDir}"
-            println "output.files = ${output.files}"
-            println "compileClasspath = ${compileClasspath}"
-            println "==========main=============="
-        }
-        prototype{
-            println "==========prototype=============="
-            println "java.srcDirs = ${java.srcDirs}"
-            println "resources.srcDirs = ${resources.srcDirs}"
-            println "java.files = ${java.files.name}"
-            println "allJava.files = ${allJava.files.name}"
-            println "resources.files = ${resources.files.name}"
-            println "allSource.files = ${allSource.files.name}"
-            println "output.classesDir = ${output.classesDir}"
-            println "output.resourcesDir = ${output.resourcesDir}"
-            println "output.files = ${output.files}"
-            println "compileClasspath = ${compileClasspath}"
-            println "==========prototype=============="
-        }
+    dependencies {
+        classpath 'org.apache.lucene.morphology:russian:1.0',
+                'org.apache.lucene.morphology:english:1.0'
     }
 }
