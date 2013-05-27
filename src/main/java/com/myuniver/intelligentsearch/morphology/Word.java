@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch;
+package com.myuniver.intelligentsearch.morphology;
 
 
 import com.google.common.base.Objects;

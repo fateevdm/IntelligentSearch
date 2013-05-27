@@ -1,10 +1,10 @@
 package com.myuniver.intelligentsearch.filters;
 
 import com.google.common.base.CharMatcher;
+import com.myuniver.intelligentsearch.structure.StopWords;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * User: Dmitry Fateev
@@ -13,10 +13,10 @@ import java.util.Set;
  * email: wearing.fateev@gmail.com
  */
 public class TokenFilter implements Filter<String> {
-    private Set<String> excluded;
+    private StopWords stopWords;
 
-    public TokenFilter(Set<String> excluded) {
-        this.excluded = excluded;
+    public TokenFilter(StopWords stopWords) {
+        this.stopWords = stopWords;
     }
 
     @Override
@@ -33,6 +33,6 @@ public class TokenFilter implements Filter<String> {
 
 
     protected boolean accept(String token) {
-        return !((excluded.contains(token)) || CharMatcher.DIGIT.matchesAllOf(token));
+        return !((stopWords.contains(token)) || CharMatcher.DIGIT.matchesAllOf(token));
     }
 }

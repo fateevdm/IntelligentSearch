@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch.util.db;
+package com.myuniver.intelligentsearch.util.io.db;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.HashMultiset;

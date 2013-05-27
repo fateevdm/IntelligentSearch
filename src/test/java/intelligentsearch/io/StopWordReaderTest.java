@@ -2,15 +2,15 @@ package intelligentsearch.io;
 
 import com.google.common.base.Strings;
 import com.myuniver.intelligentsearch.util.Config;
-import com.myuniver.intelligentsearch.util.io.FileReader;
 import com.myuniver.intelligentsearch.util.io.ResourceReader;
+import com.myuniver.intelligentsearch.util.io.file.FileReader;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 
-import static com.myuniver.intelligentsearch.structure.StopWords.STOP_WORD_FILE;
+import static com.myuniver.intelligentsearch.util.io.file.StopWordsReader.STOP_WORD_FILE;
 import static org.junit.Assert.assertFalse;
 
 /**

@@ -1,16 +1,26 @@
 package com.myuniver.intelligentsearch.dao;
 
-import com.myuniver.intelligentsearch.Word;
+import com.google.common.base.Throwables;
 import com.myuniver.intelligentsearch.filters.Filter;
+import com.myuniver.intelligentsearch.morphology.Word;
 import com.myuniver.intelligentsearch.questionanalyzer.QuestionNormalizer;
 import com.myuniver.intelligentsearch.stemmer.Stemmer;
-import com.myuniver.intelligentsearch.util.db.DBReader;
-import com.myuniver.intelligentsearch.util.db.PrototypeDocument;
-import com.myuniver.intelligentsearch.util.db.Row;
+import com.myuniver.intelligentsearch.structure.Dictionary;
+import com.myuniver.intelligentsearch.util.io.db.DBConfigs;
+import com.myuniver.intelligentsearch.util.io.db.DBReader;
+import com.myuniver.intelligentsearch.util.io.db.PrototypeDocument;
+import com.myuniver.intelligentsearch.util.io.db.Row;
 import edu.ucla.sspace.text.Document;
 import opennlp.tools.tokenize.Tokenizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
+
 
 /**
  * User: Dmitry Fateev
@@ -18,46 +28,82 @@ import java.util.*;
  * Time: 18:27
  * e-mail: wearing.fateev@gmail.com
  */
-public class DocumentReader extends DBReader<Document> {
+public class DocumentReader implements DBReader<Document> {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DocumentReader.class);
     private Tokenizer tokenizer;
     private Filter<String> filter;
     private Stemmer stemmer;
-    Dictionary<String, Word> dictionary;
+    private Dictionary<String, Word> dictionary;
+    private ResultSet set;
 
+    public DocumentReader(Tokenizer tokenizer, Filter<String> filter, Stemmer stemmer, Dictionary<String, Word> dictionary) {
+        this.tokenizer = tokenizer;
+        this.filter = filter;
+        this.stemmer = stemmer;
+        this.dictionary = dictionary;
+    }
 
-    public Iterator<Document> documentIterator() {
-        Iterator<Row> iter = super.iterator();
-        return new DocumentIter(iter);
+    public Iterator<Document> iterator() {
+        return new DocumentIter();
     }
 
     @Override
     public Collection<Document> getAll() {
 
-        return super.getAll();
+        return null;
     }
 
     @Override
     public Document getById(int id) {
 
-        return super.getById(id);
+        return null;
     }
 
     @Override
     public boolean update(Document item) {
-        return super.update(item);
+        return false;
     }
 
     @Override
     public int insert(Document item) {
-        return super.insert(item);
+        return -1;
     }
 
     @Override
     public Collection<Integer> insertAll(Collection<Document> items) {
-        return super.insertAll(items);
+        return null;
     }
-    private Document processRow(Row row){
+
+    @Override
+    public boolean removeById(Document item) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean removeAll(Collection<Document> items) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void open() {
+        try {
+            Connection con = DBConfigs.getConnection();
+            set = getAllDocuments(con);
+        } catch (ClassNotFoundException | SQLException e) {
+            LOGGER.error("", e);
+            throw Throwables.propagate(e.getCause());
+        }
+    }
+
+    private ResultSet getAllDocuments(Connection con) throws SQLException {
+        PreparedStatement statement = con.prepareStatement("SELECT history_question.question, history_answer.answer,history_answer.question_id, history_question.id\n" +
+                "FROM history_question,history_answer\n" +
+                "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
+        return statement.executeQuery();
+    }
+
+    private Document processRow(Row row) {
         String[] words = tokenizer.tokenize(row.getText());
         List<String> filtered = filter.filter(Arrays.asList(words));
         List<String> stemmed = new ArrayList<>(filtered.size());
@@ -71,30 +117,92 @@ public class DocumentReader extends DBReader<Document> {
             }
         }
         String filteredText = QuestionNormalizer.concatWithSpace(stemmed);
-        Document document = new PrototypeDocument(filteredText, row.getQuestionId(), filtered, PrototypeDocument.QUESTION, row.getText());
-        return document;
+        return new PrototypeDocument(filteredText, row.getQuestionId(), filtered, row.getFact(), row.getText());
     }
-    private class DocumentIter implements Iterator<Document>{
-        Iterator<Row> dbIter;
-        DocumentIter(Iterator<Row> i){
-            this.dbIter = i;
+
+    private ResultSet getOtherTable() {
+        try {
+            Connection con = DBConfigs.getConnection();
+            PreparedStatement statement = con.prepareStatement("SELECT history_fatherland_question.question, history_fatherland_question.id\n" +
+                    "FROM history_fatherland_question\n");
+            return statement.executeQuery();
+        } catch (ClassNotFoundException | SQLException e) {
+            LOGGER.error("", e);
+            ;
         }
+        return null;
+    }
+
+    private class DocumentIter implements Iterator<Document> {
+        ResultSet temp;
+        private boolean flag; //ugly code! TODO:change after adding table for history_fatherland
+
+        private DocumentIter() {
+            flag = true;
+            temp = getOtherTable();
+        }
+
         @Override
         public boolean hasNext() {
+            try {
+                if (flag) {
+                    return hasNext(set);
+                } else {
+                    return temp.next();
+                }
 
-            return dbIter.hasNext();
+            } catch (SQLException e) {
+                LOGGER.error("", e);
+                throw new IllegalStateException("Can not retrieve information about next element. Check resource", e.getCause());
+            }
         }
 
         @Override
         public Document next() {
-            Row row = dbIter.next();
+            try {
+                Row row;
+                if (flag) {
+                    row = loadHis();
+                } else {
+                    row = loadAlterTable();
+                }
+                return processRow(row);
 
-            return processRow(row);
+            } catch (SQLException e) {
+                LOGGER.error("", e);
+                throw Throwables.propagate(e.getCause());
+            }
         }
 
         @Override
         public void remove() {
-            dbIter.remove();
+            throw new UnsupportedOperationException("remove unsupported throught iterator. Use method 'removeById' or 'removeAll'");
+        }
+
+        private boolean hasNext(ResultSet resultSet) throws SQLException {
+            if (!resultSet.next()) {
+                flag = false;
+            }
+            return resultSet.next();
+        }
+
+        private Row loadHis() throws SQLException {
+            String originText = set.getString("question");
+            String fact = set.getString("answer");
+            int questionId = set.getInt("history_question.id");
+            int answerId = set.getInt("history_answer.question_id");
+
+            return Row.Builder.start().
+                    setOriginText(originText).
+                    setFact(fact).setQuestionId(questionId).
+                    setAnswerId(answerId).
+                    build();
+        }
+
+        private Row loadAlterTable() throws SQLException {
+            String originText = temp.getString("history_fatherland_question.question");
+            int questionId = temp.getInt("history_fatherland_question.id");
+            return Row.Builder.start().setOriginText(originText).setQuestionId(questionId).build();
         }
     }
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.structure.StopWords;
+import com.myuniver.intelligentsearch.util.io.file.StopWordsReader;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,9 +21,9 @@ public class TokenFilterTest {
     @Test
     public void filterTest() {
         ImmutableList tokens = ImmutableList.of("13", "!", "я", "1812", "работа");
-        StopWords stopWords = new StopWords();
-
-        Filter filter = new TokenFilter(stopWords.getStopWords());
+        StopWordsReader stopWordsReader = new StopWordsReader();
+        StopWords stopWords = new StopWords(stopWordsReader.getStopWords());
+        Filter<String> filter = new TokenFilter(stopWords);
         List<String> filteredTokens = filter.filter(tokens);
         List<String> expected = new ArrayList<>();
         expected.add("работа");

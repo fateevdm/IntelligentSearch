@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch.util.db;
+package com.myuniver.intelligentsearch.util.io.db;
 
 import com.myuniver.intelligentsearch.util.Config;
 
@@ -12,8 +12,6 @@ import java.sql.SQLException;
  * Time: 22:11
  */
 public class DBConfigs {
-
-
     public static final String DB_DRIVER_CLASS_NAME_PROP = "db.driver.class.name";
     public static final String DB_CONNECTION_URL = "db.connection.url";
     public static final String DB_USER = "db.user";
