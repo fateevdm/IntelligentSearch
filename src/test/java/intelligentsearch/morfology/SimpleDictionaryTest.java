@@ -1,12 +1,12 @@
 package intelligentsearch.morfology;
 
 import com.google.common.base.Strings;
+import com.myuniver.intelligentsearch.dao.io.file.DictionaryReader;
 import com.myuniver.intelligentsearch.morphology.PrototypeSimpleDictionary;
 import com.myuniver.intelligentsearch.morphology.Word;
 import com.myuniver.intelligentsearch.stemmer.SimpleStemmer;
 import com.myuniver.intelligentsearch.structure.Dictionary;
 import com.myuniver.intelligentsearch.util.Config;
-import com.myuniver.intelligentsearch.util.io.file.DictionaryReader;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

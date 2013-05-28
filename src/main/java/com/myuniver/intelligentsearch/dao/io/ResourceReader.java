@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch.util.io;
+package com.myuniver.intelligentsearch.dao.io;
 
 /**
  * User: Dmitry Fateev

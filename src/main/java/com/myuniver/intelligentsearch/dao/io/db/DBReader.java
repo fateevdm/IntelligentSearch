@@ -1,6 +1,6 @@
-package com.myuniver.intelligentsearch.util.io.db;
+package com.myuniver.intelligentsearch.dao.io.db;
 
-import com.myuniver.intelligentsearch.util.io.ResourceReader;
+import com.myuniver.intelligentsearch.dao.io.ResourceReader;
 
 import java.util.Collection;
 import java.util.Iterator;

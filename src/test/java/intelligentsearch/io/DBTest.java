@@ -2,12 +2,12 @@ package intelligentsearch.io;
 
 import com.google.common.collect.Multiset;
 import com.google.common.collect.TreeMultiset;
+import com.myuniver.intelligentsearch.dao.io.file.StopWordsReader;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.structure.StopWords;
 import com.myuniver.intelligentsearch.tokanizer.SimpleTokenizer;
-import com.myuniver.intelligentsearch.util.io.db.DBConfigs;
-import com.myuniver.intelligentsearch.util.io.file.StopWordsReader;
+import com.myuniver.intelligentsearch.util.DBConfigs;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
 import org.slf4j.Logger;

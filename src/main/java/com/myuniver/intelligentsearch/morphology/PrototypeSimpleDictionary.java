@@ -2,8 +2,8 @@ package com.myuniver.intelligentsearch.morphology;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.myuniver.intelligentsearch.dao.io.file.FileReader;
 import com.myuniver.intelligentsearch.structure.Dictionary;
-import com.myuniver.intelligentsearch.util.io.file.FileReader;
 
 import java.util.Map;
 import java.util.Set;

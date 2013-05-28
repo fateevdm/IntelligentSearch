@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch.dao;
+package com.myuniver.intelligentsearch.dao.io.db;
 
 import com.google.common.base.Throwables;
 import com.myuniver.intelligentsearch.filters.Filter;
@@ -6,10 +6,7 @@ import com.myuniver.intelligentsearch.morphology.Word;
 import com.myuniver.intelligentsearch.questionanalyzer.QuestionNormalizer;
 import com.myuniver.intelligentsearch.stemmer.Stemmer;
 import com.myuniver.intelligentsearch.structure.Dictionary;
-import com.myuniver.intelligentsearch.util.io.db.DBConfigs;
-import com.myuniver.intelligentsearch.util.io.db.DBReader;
-import com.myuniver.intelligentsearch.util.io.db.PrototypeDocument;
-import com.myuniver.intelligentsearch.util.io.db.Row;
+import com.myuniver.intelligentsearch.util.DBConfigs;
 import edu.ucla.sspace.text.Document;
 import opennlp.tools.tokenize.Tokenizer;
 import org.slf4j.Logger;

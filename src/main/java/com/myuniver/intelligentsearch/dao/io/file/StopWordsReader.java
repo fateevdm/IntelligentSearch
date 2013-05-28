@@ -1,7 +1,7 @@
-package com.myuniver.intelligentsearch.util.io.file;
+package com.myuniver.intelligentsearch.dao.io.file;
 
+import com.myuniver.intelligentsearch.dao.io.ResourceReader;
 import com.myuniver.intelligentsearch.util.Config;
-import com.myuniver.intelligentsearch.util.io.ResourceReader;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch.util.io.file;
+package com.myuniver.intelligentsearch.dao.io.file;
 
 import com.myuniver.intelligentsearch.morphology.PrototypeSimpleDictionary;
 import com.myuniver.intelligentsearch.morphology.Word;

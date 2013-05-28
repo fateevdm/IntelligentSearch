@@ -1,6 +1,10 @@
 package intelligentsearch;
 
-import com.myuniver.intelligentsearch.dao.DocumentReader;
+import com.myuniver.intelligentsearch.dao.io.db.DBReader;
+import com.myuniver.intelligentsearch.dao.io.db.DocumentReader;
+import com.myuniver.intelligentsearch.dao.io.db.PrototypeDocument;
+import com.myuniver.intelligentsearch.dao.io.file.DictionaryReader;
+import com.myuniver.intelligentsearch.dao.io.file.StopWordsReader;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.morphology.Word;
@@ -11,11 +15,7 @@ import com.myuniver.intelligentsearch.structure.Dictionary;
 import com.myuniver.intelligentsearch.structure.StopWords;
 import com.myuniver.intelligentsearch.tokanizer.SimpleTokenizer;
 import com.myuniver.intelligentsearch.util.Config;
-import com.myuniver.intelligentsearch.util.io.db.DBConfigs;
-import com.myuniver.intelligentsearch.util.io.db.DBReader;
-import com.myuniver.intelligentsearch.util.io.db.PrototypeDocument;
-import com.myuniver.intelligentsearch.util.io.file.DictionaryReader;
-import com.myuniver.intelligentsearch.util.io.file.StopWordsReader;
+import com.myuniver.intelligentsearch.util.DBConfigs;
 import edu.ucla.sspace.basis.StringBasisMapping;
 import edu.ucla.sspace.common.DocumentVectorBuilder;
 import edu.ucla.sspace.common.SemanticSpaceIO;

@@ -1,10 +1,10 @@
 package intelligentsearch.filter;
 
 import com.google.common.collect.ImmutableList;
+import com.myuniver.intelligentsearch.dao.io.file.StopWordsReader;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.structure.StopWords;
-import com.myuniver.intelligentsearch.util.io.file.StopWordsReader;
 import org.junit.Assert;
 import org.junit.Test;
 

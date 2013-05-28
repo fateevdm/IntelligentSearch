@@ -1,6 +1,4 @@
-package com.myuniver.intelligentsearch.util.io.db;
-
-import com.myuniver.intelligentsearch.util.Config;
+package com.myuniver.intelligentsearch.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
