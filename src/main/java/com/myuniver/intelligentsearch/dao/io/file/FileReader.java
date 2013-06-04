@@ -1,7 +1,8 @@
-package com.myuniver.intelligentsearch.util.io;
+package com.myuniver.intelligentsearch.dao.io.file;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Throwables;
+import com.myuniver.intelligentsearch.dao.io.ResourceReader;
 
 import java.io.IOException;
 import java.nio.file.Paths;

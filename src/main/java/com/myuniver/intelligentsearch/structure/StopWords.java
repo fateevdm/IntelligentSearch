@@ -1,36 +1,32 @@
 package com.myuniver.intelligentsearch.structure;
 
-import com.myuniver.intelligentsearch.util.Config;
-import com.myuniver.intelligentsearch.util.io.FileReader;
-import com.myuniver.intelligentsearch.util.io.ResourceReader;
-
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * User: Dmitry Fateev
- * Date: 22.05.13
- * Time: 3:57
+ * Date: 27.05.13
+ * Time: 16:34
+ * email: wearing.fateev@gmail.com
  */
 public class StopWords {
 
-    public final static String STOP_WORD_FILE = "dictionary.stopwords";
-    ResourceReader<String> reader;
-    private Set<String> stopWords = new HashSet<>();
+    private Set<String> symbols = new HashSet<>();
 
-    public StopWords() {
-        reader = FileReader.createByFile(Config.getConfig().getProperty(STOP_WORD_FILE));
+    public StopWords(Set<String> symbols) {
+        symbols.addAll(symbols);
     }
 
-    public StopWords(String file) {
-        reader = FileReader.createByFile(file);
+    public boolean contains(String word) {
+        return symbols.contains(word);
     }
 
-    public Set<String> getStopWords() {
-        reader.open();
-        for (String line : reader) {
-            stopWords.add(line);
-        }
-        return stopWords;
+    public boolean containsAll(Collection<String> col) {
+        return symbols.containsAll(col);
+    }
+
+    public int size() {
+        return symbols.size();
     }
 }

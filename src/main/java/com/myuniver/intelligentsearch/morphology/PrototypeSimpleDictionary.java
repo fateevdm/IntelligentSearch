@@ -2,7 +2,8 @@ package com.myuniver.intelligentsearch.morphology;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.myuniver.intelligentsearch.util.Dictionary;
+import com.myuniver.intelligentsearch.dao.io.file.FileReader;
+import com.myuniver.intelligentsearch.structure.Dictionary;
 
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,8 @@ import java.util.Set;
  */
 public class PrototypeSimpleDictionary<V> implements Dictionary<String, V> {
     private BiMap<String, V> dict;
+    private FileReader reader;
+    public static final String DICTIONARY_PATH = "src/main/resources/dictionary/dic_hist.txt";
 
     private PrototypeSimpleDictionary() {
         dict = HashBiMap.create();
@@ -81,6 +84,11 @@ public class PrototypeSimpleDictionary<V> implements Dictionary<String, V> {
     @Override
     public Iterable<String> keys() {
         return dict.keySet();
+    }
+
+    @Override
+    public Set<V> values() {
+        return dict.values();
     }
 
     @Override

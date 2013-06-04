@@ -1,4 +1,4 @@
-package com.myuniver.intelligentsearch.util;
+package com.myuniver.intelligentsearch.structure;
 
 import java.util.Map;
 import java.util.Set;
@@ -29,6 +29,8 @@ public interface Dictionary<K, V> {
     int size();
 
     Iterable<String> keys();
+
+    Set<V> values();
 
     Dictionary<K, V> clear();
 

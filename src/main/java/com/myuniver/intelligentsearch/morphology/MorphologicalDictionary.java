@@ -1,6 +1,6 @@
 package com.myuniver.intelligentsearch.morphology;
 
-import com.myuniver.intelligentsearch.util.Dictionary;
+import com.myuniver.intelligentsearch.structure.Dictionary;
 
 import java.util.ArrayDeque;
 import java.util.Map;
@@ -39,6 +39,11 @@ public class MorphologicalDictionary<V> implements Dictionary<String, V> {
 
     @Override
     public Dictionary<String, V> putAll(Dictionary<? extends String, ? extends V> dict) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Set<V> values() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

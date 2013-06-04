@@ -2,11 +2,12 @@ package intelligentsearch.io;
 
 import com.google.common.collect.Multiset;
 import com.google.common.collect.TreeMultiset;
+import com.myuniver.intelligentsearch.dao.io.file.StopWordsReader;
 import com.myuniver.intelligentsearch.filters.Filter;
 import com.myuniver.intelligentsearch.filters.TokenFilter;
 import com.myuniver.intelligentsearch.structure.StopWords;
 import com.myuniver.intelligentsearch.tokanizer.SimpleTokenizer;
-import com.myuniver.intelligentsearch.util.db.DBConfigs;
+import com.myuniver.intelligentsearch.util.DBConfigs;
 import opennlp.tools.tokenize.Tokenizer;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -41,9 +42,9 @@ public class DBTest {
                 "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
         ResultSet result = statement.executeQuery();
         Multiset<String> tokens = TreeMultiset.create();
-        StopWords stopWordsData = new StopWords();
-        Set<String> stopWords = stopWordsData.getStopWords();
-        Filter filter = new TokenFilter(stopWords);
+        StopWordsReader stopWordsReader = new StopWordsReader();
+        StopWords stopWords = new StopWords(stopWordsReader.getStopWords());
+        Filter<String> filter = new TokenFilter(stopWords);
         Tokenizer tokenizer = new SimpleTokenizer();
         while (result.next()) {
             String text = result.getString("history_question.question") + " " + result.getString("answer");
