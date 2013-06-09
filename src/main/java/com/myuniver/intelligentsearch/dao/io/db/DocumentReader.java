@@ -125,7 +125,6 @@ public class DocumentReader implements DBReader<Document> {
             return statement.executeQuery();
         } catch (ClassNotFoundException | SQLException e) {
             LOGGER.error("", e);
-            ;
         }
         return null;
     }

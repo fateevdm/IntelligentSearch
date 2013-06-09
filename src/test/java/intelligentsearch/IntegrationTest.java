@@ -138,40 +138,4 @@ public class IntegrationTest {
 
     }
 
-//    private List<Document> processDocs(Iterable<Row> rows) {
-//        List<Document> docs = new ArrayList<>();
-//        for (Row row : rows) {
-//            String[] words = tokenizer.tokenize(row.getText());
-//            List<String> filtered = filter.filter(Arrays.asList(words));
-//            List<String> stemmed = new ArrayList<>(filtered.size());
-//            for (String token : filtered) {
-//                Word lemma = dictionary.get(token);
-//                String stemm;
-//                if (lemma == null) {
-//                    stemm = stemmer.stemm(token);
-//                    stemmed.add(stemm);
-//                } else {
-//                    stemmed.add(lemma.getStemma());
-//                }
-//            }
-//            String filteredText = QuestionNormalizer.concatWithSpace(filtered);
-//            Document document = new PrototypeDocument(filteredText, row.getQuestionId(), filtered, row.getFact(), row.getText());
-//            docs.add(document);
-//        }
-//        return docs;
 }
-
-//    private List<Row> getTemplateDocument() throws SQLException {
-//        PreparedStatement statement = connection.prepareStatement("SELECT history_fatherland_question.question, history_fatherland_question.id\n" +
-//                "FROM history_fatherland_question\n");
-//        ResultSet result = statement.executeQuery();
-//        List<Row> documents = new ArrayList<>();
-//        while (result.next()) {
-//            String originText = result.getString("history_fatherland_question.question");
-//            int questionId = result.getInt("history_fatherland_question.id");
-//            Row row = Row.Builder.start().setOriginText(originText).setQuestionId(questionId).build();
-//            documents.add(row);
-//        }
-//        return documents;
-//    }
-//}

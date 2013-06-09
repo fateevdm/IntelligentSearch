@@ -1,238 +1,377 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output/>
+    <orderEntry type="inheritedJdk"/>
+    <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true"/>
+      <excludeFolder url="file://$MODULE_DIR$/target"/>
+      <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
     </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="language-en-2.1" level="project" />
-    <orderEntry type="library" exported="" name="segment-1.4.1" level="project" />
-    <orderEntry type="library" exported="" name="tika-core-0.9" level="project" />
-    <orderEntry type="library" exported="" name="logback-classic-1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="jna-3.4.0" level="project" />
-    <orderEntry type="library" exported="" name="opennlp-uima-1.5.3" level="project" />
-    <orderEntry type="library" exported="" name="jcl-over-slf4j-1.7.5" level="project" />
-    <orderEntry type="library" exported="" name="language-ru-2.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="hamcrest-core-1.3" level="project" />
-    <orderEntry type="library" exported="" name="trove4j-3.0.2" level="project" />
-    <orderEntry type="library" exported="" name="sspace-2.0.3" level="project" />
-    <orderEntry type="library" exported="" name="logback-core-1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="slf4j-api-1.7.5" level="project" />
-    <orderEntry type="library" exported="" name="opennlp-tools-1.5.3" level="project" />
-    <orderEntry type="library" exported="" name="opennlp-maxent-3.0.3" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.25" level="project" />
-    <orderEntry type="library" exported="" name="guava-14.0.1" level="project" />
-    <orderEntry type="library" exported="" name="groovy-all-2.1.1" level="project" />
-    <orderEntry type="library" exported="" name="commons-lang-2.4" level="project" />
-    <orderEntry type="library" exported="" name="languagetool-core-2.1" level="project" />
-    <orderEntry type="library" exported="" name="log4j-over-slf4j-1.7.5" level="project" />
-    <orderEntry type="library" exported="" name="morfologik-stemming-1.5.4" level="project" />
-    <orderEntry type="library" exported="" name="morfologik-speller-1.5.4" level="project" />
-    <orderEntry type="library" exported="" name="morfologik-fsa-1.5.4" level="project" />
-    <orderEntry type="library" exported="" name="jwordsplitter-3.4" level="project" />
-    <orderEntry type="library" exported="" name="jwnl-1.3.3" level="project" />
-    <orderEntry type="library" exported="" name="hunspell-native-libs-2.1" level="project" />
-    <orderEntry type="library" exported="" name="lucene-core-4.3.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="mockito-all-1.9.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="junit-4.11" level="project" />
+    <orderEntry type="sourceFolder" forTests="false"/>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.slf4j/slf4j-api/1.7.5/jar/6b262da268f8ad9eff941b25503a9198f0a0ac93/slf4j-api-1.7.5.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.slf4j/slf4j-api/1.7.5/source/654135274d4c27132ea208a4ec07f344bdb83bcb/slf4j-api-1.7.5-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/languagetool-core/2.1/jar/b8d8a46e3cb008b3f99adaeb3e07dc4c75fcc3c4/languagetool-core-2.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/languagetool-core/2.1/source/dcaf57854778cae8c86dc930040565f003fe0416/languagetool-core-2.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/language-ru/2.1/jar/18f58081ff7b2d5ea668bbd5339bfe0bcd6d8e3e/language-ru-2.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/language-ru/2.1/source/64ea1f9ef33a977a4d21b9b9efc32df8e43d5736/language-ru-2.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/language-en/2.1/jar/be30312781a47ce4eba0036534bf8d3e7d21f7ff/language-en-2.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/language-en/2.1/source/b95340a79d0412003049ef6bc296cf142c9514ec/language-en-2.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/hunspell-native-libs/2.1/jar/91a7d438c7c4cb178f4073bc925de05bd47cc5b0/hunspell-native-libs-2.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.languagetool/hunspell-native-libs/2.1/source/9eae613c902f496b6af166de6520d961de3e3156/hunspell-native-libs-2.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.slf4j/jcl-over-slf4j/1.7.5/jar/cd5970bd13fa85f7bed41ca606d6daf7cbf1365/jcl-over-slf4j-1.7.5.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.slf4j/jcl-over-slf4j/1.7.5/source/92082dc61252ea28d770c32c969ce809949526fc/jcl-over-slf4j-1.7.5-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.slf4j/log4j-over-slf4j/1.7.5/jar/bf39ccad53c1f695f32d610ce7f0e5bf9895b262/log4j-over-slf4j-1.7.5.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.slf4j/log4j-over-slf4j/1.7.5/source/470c84a4c4b1e72068121c571b48eb0cac382bea/log4j-over-slf4j-1.7.5-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/ch.qos.logback/logback-core/1.0.0/jar/b2893bbe71342232031f97faa1cf7bb4d99faced/logback-core-1.0.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/ch.qos.logback/logback-core/1.0.0/source/6b0ad3360ba11612e75aea121c3979a5a6750f90/logback-core-1.0.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/ch.qos.logback/logback-classic/1.0.0/jar/2577f6b69bbab34bb55634a4500b1b877aeffb7c/logback-classic-1.0.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/ch.qos.logback/logback-classic/1.0.0/source/eebfd12633815cc6ac32968896436bbf74390688/logback-classic-1.0.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/mysql/mysql-connector-java/5.1.25/jar/6b2835d687a706678591febfd47b077dcce41595/mysql-connector-java-5.1.25.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES/>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/com.google.guava/guava/14.0.1/bundle/69e12f4c6aeac392555f1ea86fab82b5e5e31ad4/guava-14.0.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/com.google.guava/guava/14.0.1/source/169f11e28e3ed9a64e9fa895eaafb579e6a5aa6c/guava-14.0.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.opennlp/opennlp-tools/1.5.3/bundle/826d34168b0e4870c9f599ed7f2b8fee4194ba3b/opennlp-tools-1.5.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.opennlp/opennlp-tools/1.5.3/source/cb4360825c39c44da764a693b2ce21719072ef09/opennlp-tools-1.5.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.opennlp/opennlp-maxent/3.0.3/bundle/55e39e6b46e71f35229cdd6950e72d8cce3b5fd4/opennlp-maxent-3.0.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.opennlp/opennlp-maxent/3.0.3/source/599de6471c979ed2d754b18a06ce6f529827216a/opennlp-maxent-3.0.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.opennlp/opennlp-uima/1.5.3/jar/3a55d8023d1de340193899250b1fd872f751051c/opennlp-uima-1.5.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.opennlp/opennlp-uima/1.5.3/source/d1d0f855836087a63826f8b32e9b7647cd9d8a63/opennlp-uima-1.5.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.lucene/lucene-core/4.3.0/jar/d4e40fe5661b8de5d8c66db3d63a47b6b3ecf7f3/lucene-core-4.3.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.lucene/lucene-core/4.3.0/source/86c29288b1930e33ba7ffea1b866af9a52d3d24a/lucene-core-4.3.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.maltparser/maltparser/1.7.2/jar/98d372ce49610a9d62d15c08b5d1c5996887a86f/maltparser-1.7.2.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.maltparser/maltparser/1.7.2/source/879fa26e8f86909080d608bcf752196f3088abf/maltparser-1.7.2-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/edu.ucla.sspace/sspace/2.0.3/jar/1452a4c705ebea657dda55eefa977b294d0f8f46/sspace-2.0.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/edu.ucla.sspace/sspace/2.0.3/source/3fec56cb0723329b17cbc09bf4acc63671b3c93c/sspace-2.0.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.codehaus.groovy/groovy-all/2.1.1/jar/346ed02f8d626f54d0a9b5dd9a6d492881de0cdb/groovy-all-2.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.codehaus.groovy/groovy-all/2.1.1/source/4503923786b951df9a77ac876fdb885d5e907329/groovy-all-2.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/commons-lang/commons-lang/2.4/jar/16313e02a793435009f1e458fa4af5d879f6fb11/commons-lang-2.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/commons-lang/commons-lang/2.4/source/2b8c4b3035e45520ef42033e823c7d33e4b4402c/commons-lang-2.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.java.dev.jna/jna/3.4.0/jar/803ff252fedbd395baffd43b37341dc4a150a554/jna-3.4.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.java.dev.jna/jna/3.4.0/source/2f42653596d0044f0ab456620cba54c9cf53c5ca/jna-3.4.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/de.abelssoft/jwordsplitter/3.4/jar/d88c2c21f9cf30b5e5c29ca651f217fbbb086392/jwordsplitter-3.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/de.abelssoft/jwordsplitter/3.4/source/b00acf9e6afcd0fbe644efa01780759b7b1d1847/jwordsplitter-3.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.carrot2/morfologik-fsa/1.5.4/jar/852a8619527b5414f218cfc021ef0f462e264a9b/morfologik-fsa-1.5.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.carrot2/morfologik-fsa/1.5.4/source/ea7f5a29e4cc0947ab60d34c70ff98c8350d9832/morfologik-fsa-1.5.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.carrot2/morfologik-stemming/1.5.4/jar/d2e40b7396dd3367812e1c9169eb73b094c2011/morfologik-stemming-1.5.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.carrot2/morfologik-stemming/1.5.4/source/8ff8ab12d6208563d89df45b975ff6835ba0d04b/morfologik-stemming-1.5.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.carrot2/morfologik-speller/1.5.4/jar/92bc06ab2157d57fc47acb5de0eec0688ad30a0c/morfologik-speller-1.5.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.carrot2/morfologik-speller/1.5.4/source/fca87ed916116e5c00ba2fec9ff2a43774f1dc98/morfologik-speller-1.5.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.sourceforge.segment/segment/1.4.1/jar/33144b4dca5587602b7ce6f0164a9f6b6dc89f81/segment-1.4.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.sourceforge.segment/segment/1.4.1/source/6134e38e3852d2fedb333a5d69c8c72af8ec8116/segment-1.4.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.tika/tika-core/0.9/bundle/bf41b8dd9bc92a7be6cafc2fe8811682e8cbd7fb/tika-core-0.9.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.apache.tika/tika-core/0.9/source/942ddb494958ee32c617da89defa07cb3790ff10/tika-core-0.9-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.sf.jwordnet/jwnl/1.3.3/jar/7108e5b6a8875fe0488d942238575407c7ab8649/jwnl-1.3.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.sf.jwordnet/jwnl/1.3.3/source/66183d789bb167f881b1677ce32147ed383e3458/jwnl-1.3.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/tw.edu.ntu.csie/libsvm/3.1/jar/69f4a2fd91f0033446a6aaa21e71f706529ae61a/libsvm-3.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/tw.edu.ntu.csie/libsvm/3.1/source/e1de3edfc7ef8a928c510114eb128869c5ed63e7/libsvm-3.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/de.bwaldvogel/liblinear/1.8/jar/658c69a0b3cf8b0f9d47f23e80c89939617ec43c/liblinear-1.8.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/de.bwaldvogel/liblinear/1.8/source/523780ed405d48fbcf73e692beb9c8b44d1446a/liblinear-1.8-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.sf.trove4j/trove4j/3.0.2/jar/c65860fd3700663a6ed870605f926d770f3bd2d4/trove4j-3.0.2.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/net.sf.trove4j/trove4j/3.0.2/source/5c156d94f846aa664542804d7ad68c8ca10659c4/trove4j-3.0.2-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.mockito/mockito-all/1.9.0/jar/d13863fbd7c0bc32845c9d8a261d03b61bf28194/mockito-all-1.9.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.mockito/mockito-all/1.9.0/source/3cdbb5d11e1cf6c98b4d3697d9eeaa71ad59ef47/mockito-all-1.9.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.hamcrest/hamcrest-core/1.3/jar/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar://C:/Users/fateevdm/.gradle/caches/artifacts-23/filestore/org.hamcrest/hamcrest-core/1.3/source/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
-  <component name="org.twodividedbyzero.idea.findbugs">
-    <option name="_basePreferences">
-      <map>
-        <entry key="property.analysisEffortLevel" value="default" />
-        <entry key="property.analyzeAfterCompile" value="false" />
-        <entry key="property.annotationGutterIconEnabled" value="true" />
-        <entry key="property.annotationSuppressWarningsClass" value="edu.umd.cs.findbugs.annotations.SuppressWarnings" />
-        <entry key="property.annotationTextRangeMarkupEnabled" value="true" />
-        <entry key="property.exportAsHtml" value="true" />
-        <entry key="property.exportAsXml" value="true" />
-        <entry key="property.exportBaseDir" value="" />
-        <entry key="property.exportCreateArchiveDir" value="false" />
-        <entry key="property.exportOpenBrowser" value="true" />
-        <entry key="property.minPriorityToReport" value="Medium" />
-        <entry key="property.runAnalysisInBackground" value="false" />
-        <entry key="property.showHiddenDetectors" value="false" />
-        <entry key="property.toolWindowToFront" value="true" />
-      </map>
-    </option>
-    <option name="_detectors">
-      <map>
-        <entry key="AppendingToAnObjectOutputStream" value="true" />
-        <entry key="AtomicityProblem" value="true" />
-        <entry key="BadAppletConstructor" value="false" />
-        <entry key="BadResultSetAccess" value="true" />
-        <entry key="BadSyntaxForRegularExpression" value="true" />
-        <entry key="BadUseOfReturnValue" value="true" />
-        <entry key="BadlyOverriddenAdapter" value="true" />
-        <entry key="BooleanReturnNull" value="true" />
-        <entry key="BuildInterproceduralCallGraph" value="false" />
-        <entry key="BuildObligationPolicyDatabase" value="true" />
-        <entry key="CallToUnsupportedMethod" value="false" />
-        <entry key="CalledMethods" value="true" />
-        <entry key="CheckCalls" value="false" />
-        <entry key="CheckExpectedWarnings" value="false" />
-        <entry key="CheckImmutableAnnotation" value="true" />
-        <entry key="CheckTypeQualifiers" value="true" />
-        <entry key="CloneIdiom" value="true" />
-        <entry key="ComparatorIdiom" value="true" />
-        <entry key="ConfusedInheritance" value="true" />
-        <entry key="ConfusionBetweenInheritedAndOuterMethod" value="true" />
-        <entry key="CrossSiteScripting" value="true" />
-        <entry key="DefaultEncodingDetector" value="true" />
-        <entry key="DoInsideDoPrivileged" value="true" />
-        <entry key="DontCatchIllegalMonitorStateException" value="true" />
-        <entry key="DontIgnoreResultOfPutIfAbsent" value="true" />
-        <entry key="DontUseEnum" value="true" />
-        <entry key="DroppedException" value="true" />
-        <entry key="DumbMethodInvocations" value="true" />
-        <entry key="DumbMethods" value="true" />
-        <entry key="DuplicateBranches" value="true" />
-        <entry key="EmptyZipFileEntry" value="true" />
-        <entry key="EqualsOperandShouldHaveClassCompatibleWithThis" value="true" />
-        <entry key="ExplicitSerialization" value="true" />
-        <entry key="FieldItemSummary" value="true" />
-        <entry key="FinalizerNullsFields" value="true" />
-        <entry key="FindBadCast2" value="true" />
-        <entry key="FindBadForLoop" value="true" />
-        <entry key="FindBugsSummaryStats" value="true" />
-        <entry key="FindCircularDependencies" value="false" />
-        <entry key="FindDeadLocalStores" value="true" />
-        <entry key="FindDoubleCheck" value="true" />
-        <entry key="FindEmptySynchronizedBlock" value="true" />
-        <entry key="FindFieldSelfAssignment" value="true" />
-        <entry key="FindFinalizeInvocations" value="true" />
-        <entry key="FindFloatEquality" value="true" />
-        <entry key="FindFloatMath" value="false" />
-        <entry key="FindHEmismatch" value="true" />
-        <entry key="FindInconsistentSync2" value="true" />
-        <entry key="FindJSR166LockMonitorenter" value="true" />
-        <entry key="FindLocalSelfAssignment2" value="true" />
-        <entry key="FindMaskedFields" value="true" />
-        <entry key="FindMismatchedWaitOrNotify" value="true" />
-        <entry key="FindNakedNotify" value="true" />
-        <entry key="FindNonSerializableStoreIntoSession" value="false" />
-        <entry key="FindNonSerializableValuePassedToWriteObject" value="false" />
-        <entry key="FindNonShortCircuit" value="true" />
-        <entry key="FindNullDeref" value="true" />
-        <entry key="FindNullDerefsInvolvingNonShortCircuitEvaluation" value="true" />
-        <entry key="FindOpenStream" value="true" />
-        <entry key="FindPuzzlers" value="true" />
-        <entry key="FindRefComparison" value="true" />
-        <entry key="FindReturnRef" value="true" />
-        <entry key="FindRunInvocations" value="true" />
-        <entry key="FindSelfComparison" value="true" />
-        <entry key="FindSelfComparison2" value="true" />
-        <entry key="FindSleepWithLockHeld" value="true" />
-        <entry key="FindSpinLoop" value="true" />
-        <entry key="FindSqlInjection" value="true" />
-        <entry key="FindTwoLockWait" value="true" />
-        <entry key="FindUncalledPrivateMethods" value="true" />
-        <entry key="FindUnconditionalWait" value="true" />
-        <entry key="FindUninitializedGet" value="true" />
-        <entry key="FindUnrelatedTypesInGenericContainer" value="true" />
-        <entry key="FindUnreleasedLock" value="true" />
-        <entry key="FindUnsatisfiedObligation" value="true" />
-        <entry key="FindUnsyncGet" value="true" />
-        <entry key="FindUseOfNonSerializableValue" value="true" />
-        <entry key="FindUselessControlFlow" value="true" />
-        <entry key="FormatStringChecker" value="true" />
-        <entry key="FunctionsThatMightBeMistakenForProcedures" value="true" />
-        <entry key="HugeSharedStringConstants" value="true" />
-        <entry key="IDivResultCastToDouble" value="true" />
-        <entry key="IncompatMask" value="true" />
-        <entry key="InconsistentAnnotations" value="true" />
-        <entry key="InefficientMemberAccess" value="false" />
-        <entry key="InefficientToArray" value="true" />
-        <entry key="InfiniteLoop" value="true" />
-        <entry key="InfiniteRecursiveLoop" value="true" />
-        <entry key="InheritanceUnsafeGetResource" value="true" />
-        <entry key="InitializationChain" value="true" />
-        <entry key="InitializeNonnullFieldsInConstructor" value="true" />
-        <entry key="InstantiateStaticClass" value="true" />
-        <entry key="IntCast2LongAsInstant" value="true" />
-        <entry key="InvalidJUnitTest" value="true" />
-        <entry key="IteratorIdioms" value="true" />
-        <entry key="LazyInit" value="true" />
-        <entry key="LoadOfKnownNullValue" value="true" />
-        <entry key="LostLoggerDueToWeakReference" value="true" />
-        <entry key="MethodReturnCheck" value="true" />
-        <entry key="Methods" value="true" />
-        <entry key="MultithreadedInstanceAccess" value="true" />
-        <entry key="MutableLock" value="true" />
-        <entry key="MutableStaticFields" value="true" />
-        <entry key="Naming" value="true" />
-        <entry key="Noise" value="false" />
-        <entry key="NoiseNullDeref" value="false" />
-        <entry key="NoteAnnotationRetention" value="true" />
-        <entry key="NoteCheckReturnValueAnnotations" value="true" />
-        <entry key="NoteDirectlyRelevantTypeQualifiers" value="true" />
-        <entry key="NoteJCIPAnnotation" value="true" />
-        <entry key="NoteNonNullAnnotations" value="true" />
-        <entry key="NoteNonnullReturnValues" value="true" />
-        <entry key="NoteSuppressedWarnings" value="true" />
-        <entry key="NoteUnconditionalParamDerefs" value="true" />
-        <entry key="NumberConstructor" value="true" />
-        <entry key="OverridingEqualsNotSymmetrical" value="true" />
-        <entry key="PreferZeroLengthArrays" value="true" />
-        <entry key="PublicSemaphores" value="false" />
-        <entry key="QuestionableBooleanAssignment" value="true" />
-        <entry key="ReadOfInstanceFieldInMethodInvokedByConstructorInSuperclass" value="true" />
-        <entry key="ReadReturnShouldBeChecked" value="true" />
-        <entry key="RedundantInterfaces" value="true" />
-        <entry key="ReflectiveClasses" value="true" />
-        <entry key="RepeatedConditionals" value="true" />
-        <entry key="ResolveAllReferences" value="false" />
-        <entry key="RuntimeExceptionCapture" value="true" />
-        <entry key="SerializableIdiom" value="true" />
-        <entry key="StartInConstructor" value="true" />
-        <entry key="StaticCalendarDetector" value="true" />
-        <entry key="StringConcatenation" value="true" />
-        <entry key="SuperfluousInstanceOf" value="true" />
-        <entry key="SuspiciousThreadInterrupted" value="true" />
-        <entry key="SwitchFallthrough" value="true" />
-        <entry key="SynchronizationOnSharedBuiltinConstant" value="true" />
-        <entry key="SynchronizeAndNullCheckField" value="true" />
-        <entry key="SynchronizeOnClassLiteralNotGetClass" value="true" />
-        <entry key="SynchronizingOnContentsOfFieldToProtectField" value="true" />
-        <entry key="TestASM" value="false" />
-        <entry key="TestDataflowAnalysis" value="false" />
-        <entry key="TestingGround" value="false" />
-        <entry key="TestingGround2" value="false" />
-        <entry key="TrainFieldStoreTypes" value="true" />
-        <entry key="TrainLongInstantfParams" value="true" />
-        <entry key="TrainNonNullAnnotations" value="true" />
-        <entry key="TrainUnconditionalDerefParams" value="true" />
-        <entry key="URLProblems" value="true" />
-        <entry key="UncallableMethodOfAnonymousClass" value="true" />
-        <entry key="UnnecessaryMath" value="true" />
-        <entry key="UnreadFields" value="true" />
-        <entry key="UselessSubclassMethod" value="false" />
-        <entry key="VarArgsProblems" value="true" />
-        <entry key="VolatileUsage" value="true" />
-        <entry key="WaitInLoop" value="true" />
-        <entry key="WrongMapIterator" value="true" />
-        <entry key="XMLFactoryBypass" value="true" />
-      </map>
-    </option>
-    <option name="_reportCategories">
-      <map>
-        <entry key="BAD_PRACTICE" value="true" />
-        <entry key="CORRECTNESS" value="true" />
-        <entry key="EXPERIMENTAL" value="true" />
-        <entry key="I18N" value="true" />
-        <entry key="MALICIOUS_CODE" value="true" />
-        <entry key="MT_CORRECTNESS" value="true" />
-        <entry key="PERFORMANCE" value="true" />
-        <entry key="SECURITY" value="true" />
-        <entry key="STYLE" value="true" />
-      </map>
-    </option>
-  </component>
+  <component name="ModuleRootManager"/>
 </module>
-

@@ -6,7 +6,6 @@ import com.myuniver.intelligentsearch.stemmer.SimpleStemmer;
 import com.myuniver.intelligentsearch.stemmer.Stemmer;
 import com.myuniver.intelligentsearch.structure.Dictionary;
 
-import java.io.IOException;
 import java.util.Set;
 
 /**
@@ -19,15 +18,10 @@ public class DictionaryReader {
     private Dictionary<String, Word> dictionary = PrototypeSimpleDictionary.create();
     private Stemmer stemmer = SimpleStemmer.getStemmer();
 
-    public DictionaryReader(String filePath) throws IOException {
+    public DictionaryReader(String filePath) {
         reader = FileReader.createByFile(filePath);
     }
 
-    /**
-     * Читает из файла строки с данными для словаря, парсит и складывает в словарь
-     *
-     * @return словарь пар <Стемма, Word>
-     */
     public Dictionary<String, Word> open() {
         String COMMENT = "#";
         reader.open();
