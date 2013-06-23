@@ -40,7 +40,8 @@ dependencies {
             'org.apache.opennlp:opennlp-uima:1.5.3',
             'org.apache.lucene:lucene-core:4.3.0',
             'org.maltparser:maltparser:1.7.2',
-            'edu.ucla.sspace:sspace:2.0.3'
+            'edu.ucla.sspace:sspace:2.0.3',
+            'org.annolab.tt4j:org.annolab.tt4j:1.1.1'
     groovy 'org.codehaus.groovy:groovy-all:2.1.1'
     testCompile 'junit:junit:4.+',
             'org.mockito:mockito-all:1.9.0'

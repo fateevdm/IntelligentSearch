@@ -2,9 +2,9 @@ package com.myuniver.intelligentsearch.morphology;
 
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Sets;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,13 +15,15 @@ import java.util.Set;
 public class Word implements Comparable<Word> {
     private final String normalForm;
     private final String stemma;
+    private final String morphem;
     private Set<String> derivativeForms;
     private double weight;
 
-    public Word(String normalForm, String stemma) {
+    public Word(String normalForm, String stemma, String morphem) {
         this.normalForm = normalForm;
         this.stemma = stemma;
-        this.derivativeForms = new HashSet<>();
+        this.morphem = morphem;
+        this.derivativeForms = Sets.newHashSet(normalForm, stemma, morphem);
     }
 
     public String getNormalForm() {
@@ -38,6 +40,10 @@ public class Word implements Comparable<Word> {
 
     public double getWeight() {
         return weight;
+    }
+
+    public boolean containsInAnyForm(String term) {
+        return derivativeForms.contains(term);
     }
 
     public Word setWeight(double weight) {
@@ -63,7 +69,7 @@ public class Word implements Comparable<Word> {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(normalForm, stemma, derivativeForms);
+        return Objects.hashCode(normalForm, stemma, morphem, derivativeForms);
     }
 
     @Override
@@ -75,7 +81,7 @@ public class Word implements Comparable<Word> {
             return false;
         }
         final Word other = (Word) obj;
-        return Objects.equal(this.normalForm, other.normalForm) && Objects.equal(this.stemma, other.stemma) && Objects.equal(this.derivativeForms, other.derivativeForms);
+        return Objects.equal(this.normalForm, other.normalForm) && Objects.equal(this.stemma, other.stemma) && Objects.equal(this.morphem, other.morphem) && Objects.equal(this.derivativeForms, other.derivativeForms);
     }
 
     @Override

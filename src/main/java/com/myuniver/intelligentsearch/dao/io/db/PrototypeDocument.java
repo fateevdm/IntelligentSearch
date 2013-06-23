@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
+import com.myuniver.intelligentsearch.morphology.Word;
 import edu.ucla.sspace.text.Document;
 
 import java.io.BufferedReader;
@@ -22,7 +23,7 @@ public class PrototypeDocument implements Comparable<PrototypeDocument>, Documen
     private final String fact;
     private final String originText;
     // the terms and their freqs
-    private Multiset<String> terms = HashMultiset.create();
+    private Multiset<Word> terms = HashMultiset.create();
 
     // the length in bytes of the doc
     private int length;
@@ -30,15 +31,15 @@ public class PrototypeDocument implements Comparable<PrototypeDocument>, Documen
     // when the doc is retrieved, it gets a score
     private double score = 0;
 
-    public PrototypeDocument(String text, int id, List<String> terms, String fact, String originText) {
+    public PrototypeDocument(String text, int id, List<Word> terms, String fact, String originText) {
         this.fact = fact;
         this.id = id;
         this.text = text;
         this.originText = originText;
-        terms.addAll(terms);
+        this.terms.addAll(terms);
     }
 
-    public Multiset<String> getTerms() {
+    public Multiset<Word> getTerms() {
         return ImmutableMultiset.copyOf(terms);
     }
 

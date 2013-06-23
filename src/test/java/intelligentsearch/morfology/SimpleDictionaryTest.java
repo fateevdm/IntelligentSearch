@@ -6,7 +6,6 @@ import com.myuniver.intelligentsearch.morphology.PrototypeSimpleDictionary;
 import com.myuniver.intelligentsearch.morphology.Word;
 import com.myuniver.intelligentsearch.stemmer.SimpleStemmer;
 import com.myuniver.intelligentsearch.structure.Dictionary;
-import com.myuniver.intelligentsearch.util.Config;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +23,11 @@ import static org.junit.Assert.*;
  * Time: 1:31
  */
 public class SimpleDictionaryTest {
-    String dictionaryPath = Config.getConfig().getProperty("dictionary.simple");
     public static final Logger LOGGER = LoggerFactory.getLogger(SimpleDictionaryTest.class);
 
     @Test
     public void dictionaryTest() throws IOException {
-        DictionaryReader reader = new DictionaryReader(dictionaryPath);
+        DictionaryReader reader = DictionaryReader.createDefaultDictionary();
         Dictionary<String, Word> dictionary = reader.open();
         assertFalse(dictionary.isEmpty());
         int count = 0;
@@ -53,9 +51,9 @@ public class SimpleDictionaryTest {
     @Test
     public void dictionaryTest_2() {
         Dictionary<String, Word> dict = PrototypeSimpleDictionary.create();
-        Word word1 = new Word("являться", SimpleStemmer.getStemmer().stemm("является")).addMorpheme("является");
+        Word word1 = new Word("являться", SimpleStemmer.getStemmer().stemm("является"), "является");
         dict.put("является", word1);
-        Word word2 = new Word("являться", SimpleStemmer.getStemmer().stemm("являлось")).addMorpheme("являлось");
+        Word word2 = new Word("являться", SimpleStemmer.getStemmer().stemm("являлось"), "являлось");
         dict.put("являлось", word2);
         for (Map.Entry<String, Word> entry : dict.entrySet()) {
             LOGGER.info("key {}; value {}", entry.getKey(), entry.getValue());

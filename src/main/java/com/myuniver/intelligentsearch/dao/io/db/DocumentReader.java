@@ -104,49 +104,32 @@ public class DocumentReader implements DBReader<Document> {
         String[] words = tokenizer.tokenize(row.getText());
         List<String> filtered = filter.filter(Arrays.asList(words));
         List<String> stemmed = new ArrayList<>(filtered.size());
+        List<Word> terms = new ArrayList<>();
         for (String token : filtered) {
             Word lemma = dictionary.get(token);
             if (lemma == null) {
                 String stemm = stemmer.stemm(token);
                 stemmed.add(stemm);
+                terms.add(new Word("", stemm, ""));
             } else {
-                stemmed.add(lemma.getStemma());
+                terms.add(lemma);
+                stemmed.add(lemma.getNormalForm());
             }
         }
-        String filteredText = QuestionNormalizer.concatWithSpace(stemmed);
-        return new PrototypeDocument(filteredText, row.getQuestionId(), filtered, row.getFact(), row.getText());
+        String text = QuestionNormalizer.concatWithSpace(stemmed);
+        return new PrototypeDocument(text, row.getQuestionId(), terms, row.getFact(), row.getText());
     }
 
-    private ResultSet getOtherTable() {
-        try {
-            Connection con = DBConfigs.getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT history_fatherland_question.question, history_fatherland_question.id\n" +
-                    "FROM history_fatherland_question\n");
-            return statement.executeQuery();
-        } catch (ClassNotFoundException | SQLException e) {
-            LOGGER.error("", e);
-        }
-        return null;
-    }
 
     private class DocumentIter implements Iterator<Document> {
-        ResultSet temp;
-        private boolean flag; //ugly code! TODO:change after adding table for history_fatherland
 
         private DocumentIter() {
-            flag = true;
-            temp = getOtherTable();
         }
 
         @Override
         public boolean hasNext() {
             try {
-                if (flag) {
-                    return hasNext(set);
-                } else {
-                    return temp.next();
-                }
-
+                return hasNext(set);
             } catch (SQLException e) {
                 LOGGER.error("", e);
                 throw new IllegalStateException("Can not retrieve information about next element. Check resource", e.getCause());
@@ -157,13 +140,8 @@ public class DocumentReader implements DBReader<Document> {
         public Document next() {
             try {
                 Row row;
-                if (flag) {
-                    row = loadHis();
-                } else {
-                    row = loadAlterTable();
-                }
+                row = loadHis();
                 return processRow(row);
-
             } catch (SQLException e) {
                 LOGGER.error("", e);
                 throw Throwables.propagate(e.getCause());
@@ -176,15 +154,12 @@ public class DocumentReader implements DBReader<Document> {
         }
 
         private boolean hasNext(ResultSet resultSet) throws SQLException {
-            if (!resultSet.next()) {
-                flag = false;
-            }
             return resultSet.next();
         }
 
         private Row loadHis() throws SQLException {
-            String originText = set.getString("question");
-            String fact = set.getString("answer");
+            String originText = set.getString("history_question.question");
+            String fact = set.getString("history_answer.answer");
             int questionId = set.getInt("history_question.id");
             int answerId = set.getInt("history_answer.question_id");
 
@@ -195,10 +170,5 @@ public class DocumentReader implements DBReader<Document> {
                     build();
         }
 
-        private Row loadAlterTable() throws SQLException {
-            String originText = temp.getString("history_fatherland_question.question");
-            int questionId = temp.getInt("history_fatherland_question.id");
-            return Row.Builder.start().setOriginText(originText).setQuestionId(questionId).build();
-        }
     }
 }

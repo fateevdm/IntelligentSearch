@@ -15,7 +15,7 @@ public class StopWords {
     private Set<String> symbols = new HashSet<>();
 
     public StopWords(Set<String> symbols) {
-        symbols.addAll(symbols);
+        this.symbols.addAll(symbols);
     }
 
     public boolean contains(String word) {
