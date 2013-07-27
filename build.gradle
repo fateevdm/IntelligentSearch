@@ -27,7 +27,6 @@ dependencies {
             'org.languagetool:language-en:2.1',
             'org.languagetool:hunspell-native-libs:2.1',
             'org.slf4j:jcl-over-slf4j:1.7.5',
-            'org.slf4j:log4j-over-slf4j:1.7.5',
             'ch.qos.logback:logback-core:1.0.0',
             'ch.qos.logback:logback-classic:1.0.0',
             'mysql:mysql-connector-java:5.1.25',
@@ -43,20 +42,20 @@ dependencies {
             'edu.ucla.sspace:sspace:2.0.3',
             'org.annolab.tt4j:org.annolab.tt4j:1.1.1'
     groovy 'org.codehaus.groovy:groovy-all:2.1.1'
-    testCompile 'junit:junit:4.+',
+    testCompile 'junit:junit:4.11',
             'org.mockito:mockito-all:1.9.0'
 }
 
-buildscript {
-    repositories {
-        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-            name = 'Lucene Russian Morphology Repository for Maven'
-            addArtifactPattern 'http://russianmorphology.googlecode.com/svn/repo/releases/'
-        }
-    }
-
-    dependencies {
-        classpath 'org.apache.lucene.morphology:russian:1.0',
-                'org.apache.lucene.morphology:english:1.0'
-    }
-}
+//buildscript {
+//    repositories {
+//        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+//            name = 'Lucene Russian Morphology Repository for Maven'
+//            addArtifactPattern 'http://russianmorphology.googlecode.com/svn/repo/releases/'
+//        }
+//    }
+//
+//    dependencies {
+//        classpath 'org.apache.lucene.morphology:russian:1.0',
+//                'org.apache.lucene.morphology:english:1.0'
+//    }
+//}

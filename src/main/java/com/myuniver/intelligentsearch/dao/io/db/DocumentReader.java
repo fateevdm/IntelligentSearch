@@ -94,9 +94,10 @@ public class DocumentReader implements DBReader<Document> {
     }
 
     private ResultSet getAllDocuments(Connection con) throws SQLException {
-        PreparedStatement statement = con.prepareStatement("SELECT history_question.question, history_answer.answer,history_answer.question_id, history_question.id\n" +
-                "FROM history_question,history_answer\n" +
-                "WHERE history_answer.question_id = history_question.id AND history_answer.correct =1;");
+        PreparedStatement statement = con.prepareStatement(
+                "SELECT questions.question, answers.answer,answers.question_id, questions.id\n" +
+                        "FROM questions,answers\n" +
+                        "WHERE answers.question_id = questions.id;");
         return statement.executeQuery();
     }
 
@@ -158,10 +159,10 @@ public class DocumentReader implements DBReader<Document> {
         }
 
         private Row loadHis() throws SQLException {
-            String originText = set.getString("history_question.question");
-            String fact = set.getString("history_answer.answer");
-            int questionId = set.getInt("history_question.id");
-            int answerId = set.getInt("history_answer.question_id");
+            String originText = set.getString("questions.question");
+            String fact = set.getString("answers.answer");
+            int questionId = set.getInt("questions.id");
+            int answerId = set.getInt("answers.question_id");
 
             return Row.Builder.start().
                     setOriginText(originText).

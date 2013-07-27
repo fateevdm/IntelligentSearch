@@ -35,7 +35,7 @@ public class TokenizerTest {
 
     @Test
     public void detokenizerTest() {
-        String[] expectedTokens = {"В", "каком", "году", "было", "Крещение", "Руси"};
+        String[] expectedTokens = {"В", "каком", "году", "было", "Крещение ", "Руси"};
         String detoken = QuestionNormalizer.concatWithSpace(Arrays.asList(expectedTokens));
         assertEquals(detoken, "В каком году было Крещение Руси");
     }

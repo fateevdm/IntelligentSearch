@@ -3,7 +3,6 @@ package intelligentsearch;
 import com.myuniver.intelligentsearch.dao.io.db.DBReader;
 import com.myuniver.intelligentsearch.dao.io.db.DocumentReader;
 import com.myuniver.intelligentsearch.dao.io.db.PrototypeDocument;
-import com.myuniver.intelligentsearch.dao.io.db.Row;
 import com.myuniver.intelligentsearch.dao.io.file.DictionaryReader;
 import com.myuniver.intelligentsearch.dao.io.file.StopWordsReader;
 import com.myuniver.intelligentsearch.filters.Filter;
@@ -33,8 +32,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -69,10 +66,12 @@ public class IntegrationTest {
 
     @Test
     public void runIntegrationTest() throws IOException, SQLException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nEnter eprs");
-        String line = sc.nextLine();
-        System.out.println(line);
+//        Scanner sc = new Scanner(System.in);
+//        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+//        System.out.print("\nEnter exprs ");
+//        String line = sc.nextLine();
+//        String line = bf.readLine();
+//        System.out.println(line);
         LOGGER.info("=======second step - load data from DB =======");
         DBReader<Document> docReader = new DocumentReader(tokenizer, filter, stemmer, dictionary);
         docReader.open();
@@ -89,16 +88,8 @@ public class IntegrationTest {
             analyzer.processDocument(doc.reader());
             ++lsaIndex;
         }
-        LOGGER.info("load alter table");
-        List<Row> alters = getTemplateDocument();
-        List<Document> alterDocuments = processDocs(alters);
-        for (Document doc : alterDocuments) {
-            fromDBToLSA.put(lsaIndex, doc);
-            analyzer.processDocument(doc.reader());
-            ++lsaIndex;
-        }
         LOGGER.info("size: {}", lsaIndex);
-        assertTrue(lsaIndex > 1000);
+        assertTrue(lsaIndex == 1932);
         analyzer.processSpace(new Properties());
         int size = analyzer.documentSpaceSize();
 //        SemanticSpaceIO.save(analyzer, new File("semantic_space_text.sspace"), SemanticSpaceIO.SSpaceFormat.SPARSE_TEXT);
@@ -107,100 +98,52 @@ public class IntegrationTest {
         int countWords = analyzer.getWords().size();
         LOGGER.info("words {}", countWords);
         DocumentVectorBuilder vectorBuilder = new DocumentVectorBuilder(analyzer);
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Enter question: ");
-            String question = scanner.nextLine();
-            if (question.equals("exit")) break;
-//        String question = "когда была сталинградская битва ..><>?<?>?<";
-            String[] words = tokenizer.tokenize(question);
-            List<String> filtered = filter.filter(Arrays.asList(words));
-            List<String> stemmed = new ArrayList<>(filtered.size());
-            List<Word> terms = new ArrayList<>();
-            for (String token : filtered) {
-                Word lemma = dictionary.get(token);
-                if (lemma == null) {
-                    String stemm = stemmer.stemm(token);
-                    stemmed.add(stemm);
-                    terms.add(new Word("", stemm, ""));
-                } else {
-                    terms.add(lemma);
-                    stemmed.add(lemma.getNormalForm());
-                }
+        String question = "когда была сталинградская битва ..><>?<?>?<";
+        String[] words = tokenizer.tokenize(question);
+        List<String> filtered = filter.filter(Arrays.asList(words));
+        List<String> stemmed = new ArrayList<>(filtered.size());
+        List<Word> terms = new ArrayList<>();
+        for (String token : filtered) {
+            Word lemma = dictionary.get(token);
+            if (lemma == null) {
+                String stemm = stemmer.stemm(token);
+                stemmed.add(stemm);
+                terms.add(new Word("", stemm, ""));
+            } else {
+                terms.add(lemma);
+                stemmed.add(lemma.getNormalForm());
             }
-            String filteredText = QuestionNormalizer.concatWithSpace(stemmed);
-            PrototypeDocument document = new PrototypeDocument(filteredText, -1, terms, PrototypeDocument.QUESTION, question);
+        }
+        String filteredText = QuestionNormalizer.concatWithSpace(stemmed);
+        PrototypeDocument document = new PrototypeDocument(filteredText, -1, terms, PrototypeDocument.QUESTION, question);
 
-            DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(dimension));
-            LinkedList<PrototypeDocument> ranged = new LinkedList<>();
-            LOGGER.info("fromDb2LSA size {}", fromDBToLSA.size());
-            for (Map.Entry<Integer, Document> entry : fromDBToLSA.entrySet()) {
-                int index = entry.getKey();
-                DoubleVector vector = analyzer.getDocumentVector(index);
-                double similarity = Similarity.getSimilarity(Similarity.SimType.COSINE, vector, stringVector);
-                PrototypeDocument doc = (PrototypeDocument) entry.getValue();
-                doc.setScore(similarity);
-                ranged.add(doc);
-            }
-            Collections.sort(ranged);
-            LOGGER.info("ranged size {}", ranged.size());
-            List<PrototypeDocument> topDocs = ranged.subList(0, 10);
+        DoubleVector stringVector = vectorBuilder.buildVector(document.reader(), new DenseVector(dimension));
+        LinkedList<PrototypeDocument> ranged = new LinkedList<>();
+        LOGGER.info("fromDb2LSA size {}", fromDBToLSA.size());
+        for (Map.Entry<Integer, Document> entry : fromDBToLSA.entrySet()) {
+            int index = entry.getKey();
+            DoubleVector vector = analyzer.getDocumentVector(index);
+            double similarity = Similarity.getSimilarity(Similarity.SimType.COSINE, vector, stringVector);
+            PrototypeDocument doc = (PrototypeDocument) entry.getValue();
+            doc.setScore(similarity);
+            ranged.add(doc);
+        }
+        Collections.sort(ranged);
+        LOGGER.info("ranged size {}", ranged.size());
+        List<PrototypeDocument> topDocs = ranged.subList(0, 10);
 //        for (PrototypeDocument doc : topDocs) {
 //            LOGGER.info("\nscore [{}],\n[{}]", doc.getScore(), doc);
 //        }
-            LOGGER.info("\nFIRST ELEM SCORE: {};\nELEM: {}\n", ranged.getFirst().getScore(), ranged.getFirst());
-            LOGGER.info("\nLAST ELEM SCORE: {};\nELEM: {}\n", ranged.getLast().getScore(), ranged.getLast());
-            LOGGER.info("fact: {}", ranged.getFirst().getFact());
-            LinkedList<PrototypeDocument> wheihted = new LinkedList<>(weightDocs(topDocs, document));
-            Collections.sort(wheihted);
+        LOGGER.info("\nFIRST ELEM SCORE: {};\nELEM: {}\n", ranged.getFirst().getScore(), ranged.getFirst());
+        LOGGER.info("\nLAST ELEM SCORE: {};\nELEM: {}\n", ranged.getLast().getScore(), ranged.getLast());
+        LOGGER.info("fact: {}", ranged.getFirst().getFact());
+        LinkedList<PrototypeDocument> wheihted = new LinkedList<>(weightDocs(topDocs, document));
+        Collections.sort(wheihted);
 //            for (PrototypeDocument doc : wheihted) {
 //                LOGGER.info("text {}\nwheight {}\nfact {}", doc.getOriginText(), doc.getScore(), doc.getFact());
 //            }
-            PrototypeDocument answer = wheihted.getFirst();
-            LOGGER.info("answer {}\nwheight {}\nfact {}", answer.getOriginText(), answer.getScore(), answer.getFact());
-        }
-    }
-
-    private List<Document> processDocs(Iterable<Row> rows) {
-        List<Document> docs = new ArrayList<>();
-        for (Row row : rows) {
-            String[] words = tokenizer.tokenize(row.getText());
-            List<String> filtered = filter.filter(Arrays.asList(words));
-            List<String> stemmed = new ArrayList(filtered.size());
-            List<Word> terms = new ArrayList<>();
-            for (String token : filtered) {
-                Word lemma = dictionary.get(token);
-                if (lemma == null) {
-                    String stemm = stemmer.stemm(token);
-                    stemmed.add(stemm);
-                    terms.add(new Word("", stemm, ""));
-                } else {
-                    terms.add(lemma);
-                    stemmed.add(lemma.getNormalForm());
-                }
-            }
-            String text = QuestionNormalizer.concatWithSpace(stemmed);
-            PrototypeDocument document = new PrototypeDocument(text, row.getQuestionId(), terms, row.getFact(), row.getText());
-            docs.add(document);
-        }
-        return docs;
-    }
-
-    private List<Row> getTemplateDocument() throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT history_fatherland_question.question, history_fatherland_question.id, history_fatherland_answer.answer,history_fatherland_answer.id\n" +
-                "FROM history_fatherland_question, history_fatherland_answer\n" +
-                "WHERE history_fatherland_answer.question_id = history_fatherland_question.id AND history_fatherland_answer.correct =1");
-        ResultSet result = statement.executeQuery();
-        List<Row> documents = new ArrayList<>();
-        while (result.next()) {
-            String originText = result.getString("history_fatherland_question.question");
-            int questionId = result.getInt("history_fatherland_question.id");
-            String answer = result.getString("history_fatherland_answer.answer");
-            int answerId = result.getInt("history_fatherland_answer.id");
-            Row row = Row.Builder.start().setOriginText(originText).setQuestionId(questionId).setAnswerId(answerId).setFact(answer).build();
-            documents.add(row);
-        }
-        return documents;
+        PrototypeDocument answer = wheihted.getFirst();
+        LOGGER.info("answer {}\nwheight {}\nfact {}", answer.getOriginText(), answer.getScore(), answer.getFact());
     }
 
     private List<PrototypeDocument> weightDocs(List<PrototypeDocument> topDocs, PrototypeDocument query) {
@@ -211,12 +154,8 @@ public class IntegrationTest {
             for (Word queryTerm : query.getTerms()) {
                 for (Word docTerm : doc.getTerms()) {
                     if (queryTerm.equals(docTerm)) {
-//                        LOGGER.info("match {}", docTerm);
                         ++sum;
-                    } else {
-//                        LOGGER.info("mismatch {}", docTerm);
                     }
-
                 }
             }
             double wheight = (double) sum / query.getTerms().size();
